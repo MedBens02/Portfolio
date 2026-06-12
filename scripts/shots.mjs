@@ -37,32 +37,33 @@ async function capture(name, { width, height, mobile = false }) {
     }, expr);
 
   await page.goto(BASE, { waitUntil: 'networkidle' });
-  await page.waitForTimeout(5500); // stamp preloader + cover intro
-  await page.screenshot({ path: `.shots/${name}-cover.png` });
+  await page.waitForTimeout(5200); // loading screen + title intro
+  await page.screenshot({ path: `.shots/${name}-hero.png` });
 
-  for (const sel of ['#profile', '#works', '#capabilities', '#record', '#contact']) {
-    await jump(`document.querySelector('${sel}').getBoundingClientRect().top + window.scrollY - 60`);
-    await page.waitForTimeout(1400);
+  for (const sel of ['#character', '#skills', '#quests', '#journey', '#side', '#contact']) {
+    await jump(`document.querySelector('${sel}').getBoundingClientRect().top + window.scrollY - 56`);
+    await page.waitForTimeout(1500);
     await page.screenshot({ path: `.shots/${name}-${sel.slice(1)}.png` });
-    if (sel === '#works' && !mobile) {
-      // mid-shelf: the pinned horizontal scroll in motion
-      await jump(`document.querySelector('#works').getBoundingClientRect().top + window.scrollY + window.innerHeight * 1.4`);
-      await page.waitForTimeout(1400);
-      await page.screenshot({ path: `.shots/${name}-works-mid.png` });
-    }
   }
 
   await jump(`document.body.scrollHeight`);
   await page.waitForTimeout(1200);
-  await page.screenshot({ path: `.shots/${name}-colophon.png` });
+  await page.screenshot({ path: `.shots/${name}-footer.png` });
 
-  const toggle = page.locator('.masthead__toggle');
-  if (await toggle.isVisible()) {
-    await toggle.click();
-    await page.waitForTimeout(900);
-    await page.screenshot({ path: `.shots/${name}-drawer.png` });
-    await page.keyboard.press('Escape');
+  if (!mobile) {
+    // Konami code → retro mode + achievement toast
+    await page.keyboard.press('ArrowUp');
+    await page.keyboard.press('ArrowUp');
+    await page.keyboard.press('ArrowDown');
+    await page.keyboard.press('ArrowDown');
+    await page.keyboard.press('ArrowLeft');
+    await page.keyboard.press('ArrowRight');
+    await page.keyboard.press('ArrowLeft');
+    await page.keyboard.press('ArrowRight');
+    await page.keyboard.press('b');
+    await page.keyboard.press('a');
     await page.waitForTimeout(700);
+    await page.screenshot({ path: `.shots/${name}-konami.png` });
   }
 
   console.log(`[${name}] ${errors.length ? 'ERRORS:\n' + errors.join('\n') : 'no console/page errors'}`);

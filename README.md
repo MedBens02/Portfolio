@@ -1,38 +1,43 @@
-# The Index — Issue Nº 01
+# PRESS START — a junior developer's journey
 
-> Mohamed Bensaddik's portfolio, designed as a printed field journal of
-> software engineering. Paper, ink and one vermilion accent.
+> Mohamed Bensaddik's portfolio as a playable-feeling game world: twilight
+> mid-tones, pixel UI, honest junior-developer positioning — quest log,
+> skill tree, XP road and open party invites.
 
-This branch is one of two complete designs in this repo:
+This branch is one of three complete designs in this repo:
 
-- **`claude/the-index-editorial`** (this branch) — warm editorial print design:
-  Fraunces variable serif, stamps, plates, ledgers and dotted leaders.
-- **`claude/dreamy-dirac-ewm5s9`** — dark "acid brutalist" design: WebGL
-  particle wave, chartreuse accent, IDE status bar.
+- **`claude/press-start-quest`** (this branch) — game-world design: dusk sky,
+  pixel adventurer, HUD, achievements, Konami code.
+- **`claude/the-index-editorial`** — paper-and-ink editorial print issue
+  (Fraunces serif, stamps, plates, ledgers).
+- **`claude/dreamy-dirac-ewm5s9`** — dark acid-brutalist design (WebGL
+  particle wave, chartreuse, IDE status bar).
 
 **Stack:** [Vite](https://vitejs.dev) · [GSAP](https://gsap.com)
-(ScrollTrigger, SplitText) · [Lenis](https://lenis.darkroom.engineering) ·
-[simplex-noise](https://github.com/jwagner/simplex-noise.js) · vanilla JS & CSS.
+(ScrollTrigger) · [Lenis](https://lenis.darkroom.engineering) · canvas 2D ·
+vanilla JS & CSS.
 
 ## Features
 
-- **Kinetic cover word** — "Engineer" set in Fraunces; each glyph's weight and
-  optical size swell toward the cursor (a slow breathing wave on touch),
-  fitted edge-to-edge at any viewport by a JS lockup sizer.
-- **Stamp preloader** — the issue literally gets stamped (red roundel slam +
-  paper recoil) before a sideways page wipe.
-- **Contour-line canvas** — drifting topographic ink lines behind the cover,
-  drawn on a 2D canvas with simplex noise; pauses off-screen.
-- **Horizontal plate shelf** — Selected Works pins and slides sideways through
-  five "scientific plates" (hand-coded SVG engravings) with parallax panning
-  and a roman-numeral counter; stacks vertically on mobile/reduced-motion.
-- **Editorial chrome** — double-rule masthead with a live chapter label, red
-  reading-progress rule, running folio chip (`p.03 — Selected Works`),
-  crop marks, paper grain, drop caps, dotted leader lines, a colophon with
-  barcode, and a postage-stamp mailto button.
+- **Scroll = time** — the fixed sky scrubs dusk → night → dawn across the
+  page; pixel stars twinkle hardest at "midnight" with the occasional
+  shooting star.
+- **The walker** — a hand-pixelled adventurer walks along the bottom strip
+  toward the flag as you scroll: page progress made literal. Flips to face
+  your scroll direction, idles when you stop.
+- **Game HUD** — scroll progress as a segmented XP bar + percent, the current
+  section as `AREA:`, all live.
+- **Honest junior framing** — a skill tree with `unlocked / in progress /
+  future quest` nodes, quest-log projects with difficulty stars and XP
+  rewards, an XP-road timeline ending at "LVL 5 — you are here", and a
+  recruitment zone that reads like an LFG post.
+- **RPG details** — typewriter dialogue box (click to skip, as is tradition),
+  achievement toasts at milestones, stat bars with intentionally low Ego,
+  a "what gaming taught me" tavern, loading screen with iris wipe, and
+  ↑↑↓↓←→←→BA for CRT retro mode.
 - **Accessible & responsive** — `prefers-reduced-motion` support throughout
-  (including a vertical works fallback), semantic HTML, keyboard-closable
-  drawer, fluid type, `100svh` cover, safe-area insets.
+  (instant text, static walker, single-frame stars), semantic HTML, fluid
+  type, `100svh` hero, mobile layouts for every zone.
 
 ## Develop
 
@@ -45,11 +50,12 @@ npm run preview  # serve the production build
 
 ## Customise
 
-All content lives in `index.html` (plates, ledger, capabilities, contact).
-Colors and type are CSS custom properties at the top of
-`src/styles/main.css` — swap `--red` and `--paper` to re-skin the issue.
-Plate artworks are hand-coded SVGs in `public/projects/`; replace them with
-real screenshots when ready.
+All content lives in `index.html` (quests, skill nodes, XP road, stats,
+contact). Colors are CSS custom properties at the top of
+`src/styles/main.css` — `--amber`, `--mint` and the `--sky-*` pairs in
+`src/js/sky.js` re-skin the world. Quest art is hand-pixelled SVG in
+`public/projects/`; swap in real screenshots (keep `image-rendering:
+pixelated` or remove it).
 
 ## Deploy
 

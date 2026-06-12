@@ -1,35 +1,33 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" font-family="Georgia, 'Times New Roman', serif">
-  <rect width="1200" height="900" fill="#f0ebdf"/>
-  <rect x="60" y="60" width="1080" height="780" fill="none" stroke="#2b2619" stroke-width="2"/>
-  <rect x="72" y="72" width="1056" height="756" fill="none" stroke="#2b2619" stroke-width="0.75"/>
-  <g fill="none" stroke="#2b2619">
-    <circle cx="600" cy="470" r="280" stroke-width="2"/>
-    <circle cx="600" cy="470" r="240" stroke-width="0.8" stroke-dasharray="2 6"/>
-    <circle cx="600" cy="470" r="180" stroke-width="1"/>
-    <circle cx="600" cy="470" r="60" stroke-width="0.8"/>
-  </g>
-  <g stroke="#9b937e" stroke-width="0.8">
-    <line x1="600" y1="150" x2="600" y2="790"/>
-    <line x1="280" y1="470" x2="920" y2="470"/>
-    <line x1="374" y1="244" x2="826" y2="696"/>
-    <line x1="826" y1="244" x2="374" y2="696"/>
-  </g>
-  <!-- compass needle -->
-  <polygon points="600,250 622,470 600,510 578,470" fill="#c93a14"/>
-  <polygon points="600,690 578,470 600,430 622,470" fill="none" stroke="#2b2619" stroke-width="1.5"/>
-  <circle cx="600" cy="470" r="12" fill="#f0ebdf" stroke="#2b2619" stroke-width="2"/>
-  <circle cx="600" cy="470" r="4" fill="#2b2619"/>
-  <g font-size="26" fill="#2b2619">
-    <text x="600" y="135" text-anchor="middle">N</text>
-    <text x="600" y="828" text-anchor="middle">S</text>
-    <text x="945" y="479">E</text>
-    <text x="238" y="479">W</text>
-  </g>
-  <g stroke="#2b2619" stroke-width="1">
-    <line x1="600" y1="190" x2="600" y2="212"/><line x1="880" y1="470" x2="858" y2="470"/>
-    <line x1="600" y1="750" x2="600" y2="728"/><line x1="320" y1="470" x2="342" y2="470"/>
-  </g>
-  <text x="120" y="150" font-size="30" font-style="italic" fill="#2b2619">Fig. 3 — Navigation, for commerce</text>
-  <text x="120" y="185" font-size="19" fill="#6e675a" font-family="monospace" letter-spacing="3">ATLAS COMMERCE · PLATE III</text>
-  <text x="1060" y="780" font-size="17" text-anchor="end" fill="#6e675a" font-style="italic">one catalogue, every channel</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 50" shape-rendering="crispEdges">
+  <rect width="80" height="50" fill="#262b45"/>
+  <!-- header -->
+  <rect x="0" y="0" width="80" height="8" fill="#343b5c"/>
+  <rect x="4" y="3" width="12" height="3" fill="#ffb454"/>
+  <rect x="58" y="3" width="8" height="3" fill="#4a5178"/>
+  <rect x="70" y="2" width="6" height="5" fill="#7ee8a2"/>
+  <rect x="72" y="1" width="2" height="1" fill="#7ee8a2"/>
+  <!-- product cards row 1 -->
+  <rect x="5" y="12" width="21" height="16" fill="#343b5c"/>
+  <rect x="8" y="14" width="15" height="8" fill="#4a5178"/>
+  <rect x="12" y="16" width="7" height="4" fill="#ffb454"/>
+  <rect x="8" y="24" width="10" height="2" fill="#adb4d2"/>
+  <rect x="20" y="24" width="4" height="2" fill="#7ee8a2"/>
+  <rect x="29" y="12" width="21" height="16" fill="#343b5c"/>
+  <rect x="32" y="14" width="15" height="8" fill="#4a5178"/>
+  <rect x="36" y="16" width="7" height="4" fill="#7ee8a2"/>
+  <rect x="32" y="24" width="10" height="2" fill="#adb4d2"/>
+  <rect x="44" y="24" width="4" height="2" fill="#7ee8a2"/>
+  <rect x="53" y="12" width="21" height="16" fill="#343b5c"/>
+  <rect x="56" y="14" width="15" height="8" fill="#4a5178"/>
+  <rect x="60" y="16" width="7" height="4" fill="#ff7d6b"/>
+  <rect x="56" y="24" width="10" height="2" fill="#adb4d2"/>
+  <rect x="68" y="24" width="4" height="2" fill="#7ee8a2"/>
+  <!-- cart summary -->
+  <rect x="5" y="33" width="44" height="12" fill="#1d2138"/>
+  <rect x="8" y="36" width="20" height="2" fill="#adb4d2"/>
+  <rect x="8" y="40" width="14" height="2" fill="#4a5178"/>
+  <rect x="36" y="36" width="10" height="6" fill="#ffb454"/>
+  <!-- buy button -->
+  <rect x="53" y="33" width="21" height="12" fill="#7ee8a2"/>
+  <rect x="57" y="37" width="13" height="4" fill="#1d2138"/>
 </svg>

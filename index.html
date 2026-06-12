@@ -3,415 +3,481 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mohamed Bensaddik — Software Engineer · The Index, Issue Nº 01</title>
-    <meta name="description" content="The Index — a field journal of software engineering. Mohamed Bensaddik designs and ships fast, resilient digital products with typographic care." />
+    <title>Mohamed Bensaddik — Junior Software Engineer · Press Start</title>
+    <meta name="description" content="Mohamed Bensaddik is a junior full-stack developer on a quest: learn fast, ship clean code, and join a team worth grinding with. Press start." />
     <meta name="author" content="Mohamed Bensaddik" />
-    <meta name="theme-color" content="#f4f0e6" />
-    <meta property="og:title" content="Mohamed Bensaddik — Software Engineer · The Index" />
-    <meta property="og:description" content="A field journal of software engineering — Issue Nº 01." />
+    <meta name="theme-color" content="#454b6e" />
+    <meta property="og:title" content="Mohamed Bensaddik — Junior Software Engineer · Press Start" />
+    <meta property="og:description" content="A junior developer's journey — quest log, skill tree and party invites open." />
     <meta property="og:type" content="website" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <script>document.documentElement.classList.replace('no-js', 'js');</script>
     <script type="module" src="/src/main.js"></script>
-    <!-- Issue Nº 01 — set in Fraunces, Archivo & Space Mono. -->
+    <!-- ↑↑↓↓←→←→BA -->
   </head>
 
   <body>
-    <!-- Preloader: the issue gets stamped before it ships -->
+    <!-- Preloader: loading screen -->
     <div class="preloader" aria-hidden="true">
-      <div class="preloader__inner">
-        <p class="preloader__over sc">A field journal of software</p>
-        <p class="preloader__title">The Index</p>
-        <p class="preloader__sub sc">Issue Nº 01 — M. Bensaddik</p>
-        <svg class="preloader__stamp roundel" viewBox="0 0 120 120" aria-hidden="true">
-          <defs>
-            <path id="ring" d="M 60,60 m -44,0 a 44,44 0 1,1 88,0 a 44,44 0 1,1 -88,0" />
-          </defs>
-          <circle cx="60" cy="60" r="56" fill="none" stroke="currentColor" stroke-width="2.5" />
-          <circle cx="60" cy="60" r="31" fill="none" stroke="currentColor" stroke-width="1.5" />
-          <text font-size="10.5" letter-spacing="2.6" fill="currentColor">
-            <textPath href="#ring">FIELD JOURNAL OF SOFTWARE • EST. 2020 • CASABLANCA •</textPath>
-          </text>
-          <text x="60" y="69" text-anchor="middle" font-size="24" font-weight="bold" fill="currentColor" font-family="Georgia, serif">MB</text>
-        </svg>
+      <div class="preloader__box">
+        <p class="px preloader__label">Loading world<span data-load-dots>…</span></p>
+        <div class="loadbar"><div class="loadbar__segs" data-loadbar></div></div>
+        <p class="px preloader__pct"><span data-load-pct>0</span>%</p>
+        <p class="px preloader__tip">Tip: every senior was a junior who kept respawning</p>
       </div>
     </div>
 
-    <!-- Paper grain -->
-    <div class="grain" aria-hidden="true"></div>
+    <!-- Sky + stars (fixed, scroll shifts dusk → night → dawn) -->
+    <div class="sky" aria-hidden="true"></div>
+    <canvas class="stars" aria-hidden="true"></canvas>
 
-    <!-- Crop marks -->
-    <div class="crop crop--tl" aria-hidden="true"></div>
-    <div class="crop crop--tr" aria-hidden="true"></div>
-    <div class="crop crop--bl" aria-hidden="true"></div>
-    <div class="crop crop--br" aria-hidden="true"></div>
+    <!-- CRT scanlines (Konami code unlock) -->
+    <div class="scanlines" aria-hidden="true"></div>
 
-    <header class="masthead">
-      <a class="masthead__name" href="#top" data-scrollto="#top">M.&nbsp;Bensaddik</a>
-      <span class="masthead__chapter sc"><span data-chapter-label>Cover</span></span>
-      <nav class="masthead__nav sc" aria-label="Sections">
-        <a href="#profile" data-scrollto="#profile">Profile</a>
-        <a href="#works" data-scrollto="#works">Works</a>
-        <a href="#capabilities" data-scrollto="#capabilities">Capabilities</a>
-        <a href="#record" data-scrollto="#record">Record</a>
-        <a href="#contact" data-scrollto="#contact">Correspondence</a>
-      </nav>
-      <button class="masthead__toggle sc" type="button" aria-label="Open index" aria-expanded="false" aria-controls="drawer">Index ☰</button>
+    <!-- HUD -->
+    <header class="hud">
+      <span class="px hud__player"><i class="hud__heart" aria-hidden="true">♥</i>MB · LVL 5 JUNIOR</span>
+      <span class="px hud__area">AREA: <span data-area>TITLE SCREEN</span></span>
+      <span class="hud__xp">
+        <span class="px">XP</span>
+        <span class="xpbar" data-xpbar aria-hidden="true"></span>
+        <span class="px hud__pct"><span data-xp>0</span>%</span>
+      </span>
     </header>
-    <div class="progress" aria-hidden="true"><div class="progress__bar"></div></div>
 
-    <!-- Index drawer (small screens) -->
-    <div class="scrim" aria-hidden="true"></div>
-    <nav class="drawer" id="drawer" aria-hidden="true" aria-label="Index">
-      <p class="drawer__head sc">In this issue</p>
-      <ol class="drawer__list">
-        <li><a href="#profile" data-scrollto="#profile"><span class="sc">01</span>Profile</a></li>
-        <li><a href="#works" data-scrollto="#works"><span class="sc">02</span>Selected Works</a></li>
-        <li><a href="#capabilities" data-scrollto="#capabilities"><span class="sc">03</span>Capabilities</a></li>
-        <li><a href="#record" data-scrollto="#record"><span class="sc">04</span>Record</a></li>
-        <li><a href="#contact" data-scrollto="#contact"><span class="sc">05</span>Correspondence</a></li>
-      </ol>
-      <div class="drawer__foot">
-        <a class="sc" href="mailto:mohamedbensaddik1234@gmail.com">mohamedbensaddik1234@gmail.com</a>
-        <div class="sc">
-          <a href="https://github.com/MedBens02" target="_blank" rel="noreferrer">GitHub ↗</a>
-          <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
-        </div>
-      </div>
-    </nav>
+    <!-- Achievement toasts -->
+    <div class="toasts" aria-live="polite"></div>
 
     <main id="top">
-      <!-- ============ COVER ============ -->
-      <section class="cover" id="cover" data-chapter="Cover" data-folio="01">
-        <canvas class="cover__contours" aria-hidden="true"></canvas>
-
-        <div class="cover__date sc">
-          <span>Vol. I — Compiled June 2026</span>
-          <span class="cover__date-mid"><i class="reddot" aria-hidden="true"></i>Open to commissions</span>
-          <span>Casablanca, Morocco</span>
+      <!-- ============ TITLE SCREEN ============ -->
+      <section class="hero" id="hero" data-area-name="TITLE SCREEN">
+        <div class="hero__scene" aria-hidden="true">
+          <div class="hero__sun"></div>
+          <svg class="hero__mtn hero__mtn--far" viewBox="0 0 1200 260" preserveAspectRatio="none">
+            <path fill="currentColor" d="M0,260 L0,150 L80,150 L80,110 L150,110 L150,70 L220,70 L220,110 L300,110 L300,150 L380,150 L380,100 L460,100 L460,60 L540,60 L540,100 L620,100 L620,140 L720,140 L720,90 L800,90 L800,50 L880,50 L880,90 L960,90 L960,130 L1040,130 L1040,160 L1200,160 L1200,260 Z"/>
+          </svg>
+          <svg class="hero__mtn hero__mtn--mid" viewBox="0 0 1200 220" preserveAspectRatio="none">
+            <path fill="currentColor" d="M0,220 L0,120 L100,120 L100,80 L180,80 L180,120 L260,120 L260,150 L360,150 L360,90 L440,90 L440,50 L520,50 L520,90 L640,90 L640,130 L760,130 L760,100 L860,100 L860,140 L980,140 L980,110 L1080,110 L1080,150 L1200,150 L1200,220 Z"/>
+          </svg>
+          <svg class="hero__mtn hero__mtn--near" viewBox="0 0 1200 170" preserveAspectRatio="none">
+            <path fill="currentColor" d="M0,170 L0,100 L140,100 L140,70 L240,70 L240,100 L400,100 L400,120 L560,120 L560,80 L680,80 L680,110 L840,110 L840,90 L1000,90 L1000,120 L1200,120 L1200,170 Z"/>
+            <g fill="currentColor">
+              <rect x="180" y="40" width="8" height="30"/><rect x="172" y="48" width="24" height="8"/><rect x="176" y="32" width="16" height="8"/>
+              <rect x="600" y="52" width="8" height="28"/><rect x="592" y="60" width="24" height="8"/><rect x="596" y="44" width="16" height="8"/>
+              <rect x="920" y="62" width="8" height="28"/><rect x="912" y="70" width="24" height="8"/><rect x="916" y="54" width="16" height="8"/>
+            </g>
+          </svg>
         </div>
 
-        <div class="cover__main">
-          <p class="cover__kicker sc">Mohamed Bensaddik, <em>author &amp; engineer</em></p>
-          <div class="cover__wordrow">
-            <h1 class="cover__word" data-fit data-fit-cap="26" data-kinetic>Engineer</h1>
-          </div>
-          <p class="cover__ital">of software<span class="red">.</span></p>
-        </div>
-
-        <div class="cover__lower">
-          <p class="cover__deck">
-            Designing &amp; shipping fast, resilient products — APIs, interfaces,
-            infrastructure — with the care of a typesetter and the patience of a
-            debugger.
+        <div class="hero__content">
+          <p class="px hero__kicker" data-intro>— A junior developer's journey —</p>
+          <h1 class="hero__title">
+            <span class="hero__trow"><span class="hero__tline" data-fit data-fit-cap="17" data-title>Mohamed</span></span>
+            <span class="hero__trow"><span class="hero__tline" data-fit data-fit-cap="17" data-title>Bensaddik</span></span>
+          </h1>
+          <p class="hero__class" data-intro>
+            <span class="hero__role">Junior Full-Stack Developer</span>
+            <span class="hero__tags px">[ coder ] [ gamer ] [ problem solver ]</span>
           </p>
-          <nav class="toc" aria-label="Table of contents">
-            <p class="toc__head sc">In this issue</p>
-            <ol>
-              <li><a href="#profile" data-scrollto="#profile"><span class="toc__no">01</span><span>Profile</span><span class="dots"></span><span class="toc__pg">p.02</span></a></li>
-              <li><a href="#works" data-scrollto="#works"><span class="toc__no">02</span><span>Selected Works</span><span class="dots"></span><span class="toc__pg">p.03</span></a></li>
-              <li><a href="#capabilities" data-scrollto="#capabilities"><span class="toc__no">03</span><span>Capabilities</span><span class="dots"></span><span class="toc__pg">p.05</span></a></li>
-              <li><a href="#record" data-scrollto="#record"><span class="toc__no">04</span><span>Record</span><span class="dots"></span><span class="toc__pg">p.06</span></a></li>
-              <li><a href="#contact" data-scrollto="#contact"><span class="toc__no">05</span><span>Correspondence</span><span class="dots"></span><span class="toc__pg">p.07</span></a></li>
-            </ol>
+
+          <nav class="gamemenu" aria-label="Main menu" data-intro>
+            <a class="gamemenu__item" href="#character" data-scrollto="#character"><i aria-hidden="true">▶</i>Start quest</a>
+            <a class="gamemenu__item" href="#quests" data-scrollto="#quests"><i aria-hidden="true">▶</i>Quest log</a>
+            <a class="gamemenu__item" href="#skills" data-scrollto="#skills"><i aria-hidden="true">▶</i>Skill tree</a>
+            <a class="gamemenu__item" href="#contact" data-scrollto="#contact"><i aria-hidden="true">▶</i>Join my party</a>
           </nav>
+
+          <p class="px hero__press" data-intro><span class="blink">▼</span> press start — or just scroll</p>
         </div>
-
-        <svg class="cover__stamp roundel" viewBox="0 0 120 120" aria-hidden="true">
-          <defs>
-            <path id="ring2" d="M 60,60 m -44,0 a 44,44 0 1,1 88,0 a 44,44 0 1,1 -88,0" />
-          </defs>
-          <circle cx="60" cy="60" r="56" fill="none" stroke="currentColor" stroke-width="2.5" />
-          <circle cx="60" cy="60" r="31" fill="none" stroke="currentColor" stroke-width="1.5" />
-          <text font-size="10.5" letter-spacing="2.6" fill="currentColor">
-            <textPath href="#ring2">FIELD JOURNAL OF SOFTWARE • EST. 2020 • CASABLANCA •</textPath>
-          </text>
-          <text x="60" y="69" text-anchor="middle" font-size="24" font-weight="bold" fill="currentColor" font-family="Georgia, serif">MB</text>
-        </svg>
-
-        <p class="cover__hint sc">Continue reading <i>↓</i></p>
+        <span class="px hero__ver" aria-hidden="true">build v1.0 — casablanca, morocco</span>
       </section>
 
-      <!-- ============ 01 PROFILE ============ -->
-      <section class="chapter profile" id="profile" data-chapter="Profile" data-folio="02">
-        <header class="ch-head">
-          <span class="ch-head__no" aria-hidden="true">01</span>
-          <h2 class="ch-head__title">Profile<span class="red">.</span></h2>
-          <span class="ch-head__note sc">The author, briefly</span>
+      <!-- ============ CHARACTER ============ -->
+      <section class="zone" id="character" data-area-name="CHARACTER">
+        <header class="zone__head" data-reveal>
+          <span class="px zone__tag">Zone 01</span>
+          <h2 class="zone__title">Character</h2>
+          <span class="px zone__note">the player behind the keyboard</span>
         </header>
 
-        <figure class="quote" data-reveal>
-          <blockquote>
-            <p data-quote>“I obsess over the details most people never see — that's where good software lives.”</p>
-          </blockquote>
-          <figcaption class="sc">— Margin note, found in every codebase</figcaption>
-        </figure>
-
-        <div class="profile__grid">
-          <div class="profile__bio">
-            <p class="dropcap" data-reveal>
-              For the past five years I've designed, built and shipped software across
-              the stack — clean APIs, snappy interfaces, and infrastructure that doesn't
-              fall over at 3&nbsp;a.m. I write code the way good books are typeset:
-              with rhythm, restraint, and respect for whoever reads it next.
-            </p>
-            <p data-reveal>
-              I care about performance budgets, readable diffs and interfaces that feel
-              alive. Currently taking on ambitious projects and full-time roles.
-            </p>
+        <div class="char__grid">
+          <div class="dialogwrap" data-reveal>
+            <div class="dialog panel">
+            <div class="panel__in">
+              <p class="dialog__text" data-type>
+                Hi! I'm a junior developer from Casablanca who fell in love with building
+                things that live on the internet. I learn fast, ask good questions, and
+                I'm not afraid of the deep end. I'm looking for a team where I can
+                contribute from day one, absorb everything, and level up for real. My
+                quest: write code the next person actually enjoys reading.
+              </p>
+              <span class="px dialog__more blink" aria-hidden="true">▼</span>
+            </div>
+            </div>
+            <span class="px dialog__name">Mohamed</span>
           </div>
 
-          <dl class="specs" aria-label="Specifications">
-            <div class="specs__row" data-reveal><dt>Experience</dt><span class="dots"></span><dd>05+ years</dd></div>
-            <div class="specs__row" data-reveal><dt>Projects shipped</dt><span class="dots"></span><dd>40+</dd></div>
-            <div class="specs__row" data-reveal><dt>Stack coverage</dt><span class="dots"></span><dd>Full</dd></div>
-            <div class="specs__row" data-reveal><dt>Espresso consumed</dt><span class="dots"></span><dd>∞</dd></div>
-          </dl>
-        </div>
-      </section>
-
-      <!-- ============ 02 SELECTED WORKS (horizontal plates) ============ -->
-      <section class="chapter works" id="works" data-chapter="Selected Works" data-folio="03">
-        <header class="ch-head">
-          <span class="ch-head__no" aria-hidden="true">02</span>
-          <h2 class="ch-head__title">Selected Works<span class="red">.</span></h2>
-          <span class="ch-head__note sc works__note">The shelf slides sideways — keep scrolling</span>
-        </header>
-
-        <div class="works__viewport">
-          <div class="works__track">
-            <article class="plate">
-              <figure class="plate__fig">
-                <img src="/projects/nexa.svg" alt="Nexa Analytics — engraved telemetry chart, plate I" loading="lazy" />
-                <figcaption class="sc"><span>Fig. 1</span><span>Telemetry</span></figcaption>
-              </figure>
-              <div class="plate__body">
-                <span class="plate__no sc">Plate I — 2026</span>
-                <h3 class="plate__title">Nexa Analytics</h3>
-                <p class="plate__desc">A realtime analytics suite that turns event firehoses into legible, beautiful dashboards.</p>
-                <p class="plate__tags sc">React · Node.js · PostgreSQL</p>
-                <a class="plate__link sc" href="https://github.com/MedBens02" target="_blank" rel="noreferrer">View the work ↗</a>
-              </div>
-            </article>
-
-            <article class="plate">
-              <figure class="plate__fig">
-                <img src="/projects/pulse.svg" alt="Pulse API — seismograph trace, plate II" loading="lazy" />
-                <figcaption class="sc"><span>Fig. 2</span><span>Seismograph</span></figcaption>
-              </figure>
-              <div class="plate__body">
-                <span class="plate__no sc">Plate II — 2025</span>
-                <h3 class="plate__title">Pulse API</h3>
-                <p class="plate__desc">Event infrastructure moving 120k messages a second with sub-millisecond fan-out.</p>
-                <p class="plate__tags sc">Go · Redis · WebSockets</p>
-                <a class="plate__link sc" href="https://github.com/MedBens02" target="_blank" rel="noreferrer">View the work ↗</a>
-              </div>
-            </article>
-
-            <article class="plate">
-              <figure class="plate__fig">
-                <img src="/projects/atlas.svg" alt="Atlas Commerce — compass rose engraving, plate III" loading="lazy" />
-                <figcaption class="sc"><span>Fig. 3</span><span>Navigation</span></figcaption>
-              </figure>
-              <div class="plate__body">
-                <span class="plate__no sc">Plate III — 2025</span>
-                <h3 class="plate__title">Atlas Commerce</h3>
-                <p class="plate__desc">A headless storefront engine: one catalogue, every channel, no compromises.</p>
-                <p class="plate__tags sc">Next.js · Stripe · GraphQL</p>
-                <a class="plate__link sc" href="https://github.com/MedBens02" target="_blank" rel="noreferrer">View the work ↗</a>
-              </div>
-            </article>
-
-            <article class="plate">
-              <figure class="plate__fig">
-                <img src="/projects/orbit.svg" alt="Orbit CMS — celestial orbits diagram, plate IV" loading="lazy" />
-                <figcaption class="sc"><span>Fig. 4</span><span>Celestial</span></figcaption>
-              </figure>
-              <div class="plate__body">
-                <span class="plate__no sc">Plate IV — 2024</span>
-                <h3 class="plate__title">Orbit CMS</h3>
-                <p class="plate__desc">A developer-first content engine where schemas are code and editors feel at home.</p>
-                <p class="plate__tags sc">TypeScript · Prisma · tRPC</p>
-                <a class="plate__link sc" href="https://github.com/MedBens02" target="_blank" rel="noreferrer">View the work ↗</a>
-              </div>
-            </article>
-
-            <article class="plate">
-              <figure class="plate__fig">
-                <img src="/projects/flux.svg" alt="Flux Mobile — wave interference pattern, plate V" loading="lazy" />
-                <figcaption class="sc"><span>Fig. 5</span><span>Interference</span></figcaption>
-              </figure>
-              <div class="plate__body">
-                <span class="plate__no sc">Plate V — 2023</span>
-                <h3 class="plate__title">Flux Mobile</h3>
-                <p class="plate__desc">A cross-platform fitness companion with offline-first sync and buttery motion.</p>
-                <p class="plate__tags sc">React Native · Firebase</p>
-                <a class="plate__link sc" href="https://github.com/MedBens02" target="_blank" rel="noreferrer">View the work ↗</a>
-              </div>
-            </article>
+          <div class="char__stats panel" data-reveal>
+            <div class="panel__in">
+              <p class="px char__stats-head">Base stats</p>
+              <ul class="statbars">
+                <li><span class="px">Curiosity</span><span class="statbar"><i data-stat="98"></i></span><b class="px">98</b></li>
+                <li><span class="px">Persistence</span><span class="statbar"><i data-stat="92"></i></span><b class="px">92</b></li>
+                <li><span class="px">Teamwork</span><span class="statbar"><i data-stat="88"></i></span><b class="px">88</b></li>
+                <li><span class="px">Coffee</span><span class="statbar"><i data-stat="100"></i></span><b class="px">100</b></li>
+                <li><span class="px">Ego</span><span class="statbar"><i data-stat="12" data-stat-low></i></span><b class="px">12</b></li>
+              </ul>
+              <p class="px char__stats-note">* ego intentionally kept low — better loot that way</p>
+            </div>
           </div>
         </div>
 
-        <footer class="works__foot sc">
-          <span>Plate <span data-plate>I</span> of V</span>
-          <a href="https://github.com/MedBens02" target="_blank" rel="noreferrer">Complete archive on GitHub ↗</a>
-        </footer>
-      </section>
-
-      <!-- ============ 03 CAPABILITIES (type specimen) ============ -->
-      <section class="chapter caps" id="capabilities" data-chapter="Capabilities" data-folio="05">
-        <header class="ch-head">
-          <span class="ch-head__no" aria-hidden="true">03</span>
-          <h2 class="ch-head__title">Capabilities<span class="red">.</span></h2>
-          <span class="ch-head__note sc">A specimen sheet</span>
-        </header>
-
-        <ul class="caps__list">
-          <li class="spec" data-reveal>
-            <span class="spec__idx sc">№ 1</span>
-            <h3 class="spec__word">Frontend</h3>
-            <div class="spec__info">
-              <p class="spec__line">Interfaces that feel inevitable.</p>
-              <p class="spec__tags sc">React · Next.js · TypeScript · GSAP · Canvas</p>
-            </div>
-          </li>
-          <li class="spec" data-reveal>
-            <span class="spec__idx sc">№ 2</span>
-            <h3 class="spec__word">Backend</h3>
-            <div class="spec__info">
-              <p class="spec__line">APIs that read like prose.</p>
-              <p class="spec__tags sc">Node.js · Go · PostgreSQL · Redis · GraphQL</p>
-            </div>
-          </li>
-          <li class="spec" data-reveal>
-            <span class="spec__idx sc">№ 3</span>
-            <h3 class="spec__word">Cloud</h3>
-            <div class="spec__info">
-              <p class="spec__line">Infrastructure that sleeps at night.</p>
-              <p class="spec__tags sc">AWS · Docker · Kubernetes · Terraform · CI/CD</p>
-            </div>
-          </li>
-          <li class="spec" data-reveal>
-            <span class="spec__idx sc">№ 4</span>
-            <h3 class="spec__word">Craft</h3>
-            <div class="spec__info">
-              <p class="spec__line">The invisible ten percent.</p>
-              <p class="spec__tags sc">System design · Performance · Testing · Accessibility · Motion</p>
-            </div>
-          </li>
+        <ul class="traits" data-reveal>
+          <li class="px">Fast learner</li>
+          <li class="px">Bug hunter</li>
+          <li class="px">Clean committer</li>
+          <li class="px">Team player</li>
+          <li class="px">Deadline respecter</li>
         </ul>
       </section>
 
-      <!-- ============ 04 RECORD (ledger) ============ -->
-      <section class="chapter record" id="record" data-chapter="Record" data-folio="06">
-        <header class="ch-head">
-          <span class="ch-head__no" aria-hidden="true">04</span>
-          <h2 class="ch-head__title">Record<span class="red">.</span></h2>
-          <span class="ch-head__note sc">Service history</span>
+      <!-- ============ SKILL TREE ============ -->
+      <section class="zone" id="skills" data-area-name="SKILL TREE">
+        <header class="zone__head" data-reveal>
+          <span class="px zone__tag">Zone 02</span>
+          <h2 class="zone__title">Skill tree</h2>
+          <span class="px zone__note">respec'd weekly · always grinding</span>
         </header>
 
-        <ol class="ledger">
-          <li class="ledger__row" data-reveal>
-            <span class="ledger__period">2024 — Now</span>
-            <div class="ledger__main">
-              <h3>Senior Software Engineer</h3>
-              <p>Designing and shipping full-stack products end-to-end for startups and studios.</p>
-            </div>
-            <span class="dots"></span>
-            <span class="ledger__org sc">Freelance / Consulting</span>
-          </li>
-          <li class="ledger__row" data-reveal>
-            <span class="ledger__period">2022 — 2024</span>
-            <div class="ledger__main">
-              <h3>Full-Stack Engineer</h3>
-              <p>Built realtime dashboards, payment flows and internal tooling for scale-ups.</p>
-            </div>
-            <span class="dots"></span>
-            <span class="ledger__org sc">Product Studio</span>
-          </li>
-          <li class="ledger__row" data-reveal>
-            <span class="ledger__period">2020 — 2022</span>
-            <div class="ledger__main">
-              <h3>Software Developer</h3>
-              <p>Delivered performant marketing sites and e-commerce builds for global clients.</p>
-            </div>
-            <span class="dots"></span>
-            <span class="ledger__org sc">Digital Agency</span>
-          </li>
-        </ol>
+        <div class="tree">
+          <div class="tree__branch" data-branch>
+            <h3 class="px tree__name">Frontend</h3>
+            <ul>
+              <li class="node node--on"><b>HTML / CSS</b><span class="px">unlocked</span></li>
+              <li class="node node--on"><b>JavaScript</b><span class="px">unlocked</span></li>
+              <li class="node node--on"><b>React</b><span class="px">unlocked</span></li>
+              <li class="node node--on"><b>TypeScript</b><span class="px">unlocked</span></li>
+              <li class="node node--wip"><b>Next.js</b><span class="px">in progress</span></li>
+              <li class="node node--off"><b>Three.js</b><span class="px">future quest</span></li>
+            </ul>
+          </div>
+          <div class="tree__branch" data-branch>
+            <h3 class="px tree__name">Backend</h3>
+            <ul>
+              <li class="node node--on"><b>Node.js / Express</b><span class="px">unlocked</span></li>
+              <li class="node node--on"><b>REST APIs</b><span class="px">unlocked</span></li>
+              <li class="node node--on"><b>SQL / PostgreSQL</b><span class="px">unlocked</span></li>
+              <li class="node node--wip"><b>Testing (Jest)</b><span class="px">in progress</span></li>
+              <li class="node node--wip"><b>GraphQL</b><span class="px">in progress</span></li>
+              <li class="node node--off"><b>Go</b><span class="px">future quest</span></li>
+            </ul>
+          </div>
+          <div class="tree__branch" data-branch>
+            <h3 class="px tree__name">Tools &amp; Ops</h3>
+            <ul>
+              <li class="node node--on"><b>Git / GitHub</b><span class="px">unlocked</span></li>
+              <li class="node node--on"><b>Linux / CLI</b><span class="px">unlocked</span></li>
+              <li class="node node--on"><b>Figma → code</b><span class="px">unlocked</span></li>
+              <li class="node node--wip"><b>Docker</b><span class="px">in progress</span></li>
+              <li class="node node--wip"><b>CI / CD</b><span class="px">in progress</span></li>
+              <li class="node node--off"><b>Kubernetes</b><span class="px">future quest</span></li>
+            </ul>
+          </div>
+        </div>
+        <p class="px tree__legend" data-reveal>
+          <span><i class="dotk dotk--on"></i>unlocked</span>
+          <span><i class="dotk dotk--wip"></i>in progress</span>
+          <span><i class="dotk dotk--off"></i>future quest</span>
+        </p>
       </section>
 
-      <!-- ============ 05 CORRESPONDENCE ============ -->
-      <section class="chapter post" id="contact" data-chapter="Correspondence" data-folio="07">
-        <header class="ch-head">
-          <span class="ch-head__no" aria-hidden="true">05</span>
-          <h2 class="ch-head__title">Correspondence<span class="red">.</span></h2>
-          <span class="ch-head__note sc">Letters to the editor</span>
+      <!-- ============ QUEST LOG ============ -->
+      <section class="zone" id="quests" data-area-name="QUEST LOG">
+        <header class="zone__head" data-reveal>
+          <span class="px zone__tag">Zone 03</span>
+          <h2 class="zone__title">Quest log</h2>
+          <span class="px zone__note">4 main · 2 side · 0 abandoned</span>
         </header>
 
-        <div class="post__titlerow">
-          <p class="post__big"><span class="post__bigin" data-fit data-fit-cap="24"><em>Write</em> to me.</span></p>
+        <div class="quests">
+          <article class="quest panel" data-reveal>
+            <div class="panel__in">
+              <header class="quest__top">
+                <span class="px quest__type">Main quest</span>
+                <span class="px quest__diff" aria-label="Difficulty 4 of 5">★★★★<i>★</i></span>
+              </header>
+              <figure class="quest__art"><img src="/projects/nexa.svg" alt="Nexa Dashboard — pixel-art analytics screen" loading="lazy" /></figure>
+              <h3 class="quest__title">Nexa Dashboard</h3>
+              <p class="quest__desc">Built a full-stack analytics dashboard from scratch — auth, charts, live data, the lot. First boss that required a real database schema.</p>
+              <p class="quest__xp px"><span>+40xp React</span><span>+35xp Node.js</span><span>+30xp PostgreSQL</span></p>
+              <footer class="quest__foot">
+                <span class="px quest__status">✓ Completed</span>
+                <a class="px quest__link" href="https://github.com/MedBens02" target="_blank" rel="noreferrer">View code ▶</a>
+              </footer>
+            </div>
+          </article>
+
+          <article class="quest panel" data-reveal>
+            <div class="panel__in">
+              <header class="quest__top">
+                <span class="px quest__type">Main quest</span>
+                <span class="px quest__diff" aria-label="Difficulty 4 of 5">★★★★<i>★</i></span>
+              </header>
+              <figure class="quest__art"><img src="/projects/pulse.svg" alt="Pulse Chat — pixel-art chat window" loading="lazy" /></figure>
+              <h3 class="quest__title">Pulse Chat</h3>
+              <p class="quest__desc">Realtime chat with rooms, presence and typing indicators over WebSockets. Learned why race conditions are called that.</p>
+              <p class="quest__xp px"><span>+45xp WebSockets</span><span>+30xp Redis</span><span>+25xp Auth</span></p>
+              <footer class="quest__foot">
+                <span class="px quest__status">✓ Completed</span>
+                <a class="px quest__link" href="https://github.com/MedBens02" target="_blank" rel="noreferrer">View code ▶</a>
+              </footer>
+            </div>
+          </article>
+
+          <article class="quest panel" data-reveal>
+            <div class="panel__in">
+              <header class="quest__top">
+                <span class="px quest__type">Main quest</span>
+                <span class="px quest__diff" aria-label="Difficulty 3 of 5">★★★<i>★★</i></span>
+              </header>
+              <figure class="quest__art"><img src="/projects/atlas.svg" alt="Atlas Shop — pixel-art storefront" loading="lazy" /></figure>
+              <h3 class="quest__title">Atlas Shop</h3>
+              <p class="quest__desc">E-commerce store with cart, Stripe test checkout and an admin panel. Inventory bugs were the real final boss.</p>
+              <p class="quest__xp px"><span>+35xp Next.js</span><span>+30xp Stripe</span><span>+20xp SQL</span></p>
+              <footer class="quest__foot">
+                <span class="px quest__status">✓ Completed</span>
+                <a class="px quest__link" href="https://github.com/MedBens02" target="_blank" rel="noreferrer">View code ▶</a>
+              </footer>
+            </div>
+          </article>
+
+          <article class="quest panel" data-reveal>
+            <div class="panel__in">
+              <header class="quest__top">
+                <span class="px quest__type">Main quest</span>
+                <span class="px quest__diff" aria-label="Difficulty 3 of 5">★★★<i>★★</i></span>
+              </header>
+              <figure class="quest__art"><img src="/projects/orbit.svg" alt="Orbit Notes — pixel-art markdown editor" loading="lazy" /></figure>
+              <h3 class="quest__title">Orbit Notes</h3>
+              <p class="quest__desc">Markdown knowledge base with tags, full-text search and offline cache. Built to learn — kept because I actually use it.</p>
+              <p class="quest__xp px"><span>+30xp TypeScript</span><span>+25xp IndexedDB</span><span>+20xp UX</span></p>
+              <footer class="quest__foot">
+                <span class="px quest__status">✓ Completed</span>
+                <a class="px quest__link" href="https://github.com/MedBens02" target="_blank" rel="noreferrer">View code ▶</a>
+              </footer>
+            </div>
+          </article>
         </div>
 
-        <div class="post__grid">
-          <div class="letter" data-reveal>
-            <p class="letter__salute">Dear reader,</p>
-            <p>
-              If you're building something ambitious — and you care how it's made —
-              my desk is open. Send a few lines about your project; expect a
-              considered reply within a day or two.
+        <div class="sidequests">
+          <article class="squest panel" data-reveal>
+            <div class="panel__in">
+              <header class="quest__top">
+                <span class="px quest__type quest__type--side">Side quest</span>
+                <span class="px quest__diff" aria-label="Difficulty 2 of 5">★★<i>★★★</i></span>
+              </header>
+              <h3 class="quest__title">Flux Tracker</h3>
+              <p class="quest__desc">Mobile-first workout logger PWA. Offline-first, installable, zero excuses.</p>
+              <footer class="quest__foot">
+                <span class="px quest__status">✓ Completed</span>
+                <a class="px quest__link" href="https://github.com/MedBens02" target="_blank" rel="noreferrer">View code ▶</a>
+              </footer>
+            </div>
+          </article>
+          <article class="squest panel" data-reveal>
+            <div class="panel__in">
+              <header class="quest__top">
+                <span class="px quest__type quest__type--side">Side quest</span>
+                <span class="px quest__diff" aria-label="Difficulty 3 of 5">★★★<i>★★</i></span>
+              </header>
+              <h3 class="quest__title">This portfolio</h3>
+              <p class="quest__desc">Designed &amp; built from scratch — GSAP, canvas stars and one very small pixel adventurer. Reward: you're looking at it.</p>
+              <footer class="quest__foot">
+                <span class="px quest__status">✓ Completed</span>
+                <a class="px quest__link" href="https://github.com/MedBens02/Portfolio" target="_blank" rel="noreferrer">View code ▶</a>
+              </footer>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ============ XP ROAD ============ -->
+      <section class="zone" id="journey" data-area-name="XP ROAD">
+        <header class="zone__head" data-reveal>
+          <span class="px zone__tag">Zone 04</span>
+          <h2 class="zone__title">XP road</h2>
+          <span class="px zone__note">the grind so far</span>
+        </header>
+
+        <ol class="road">
+          <li class="road__step" data-reveal>
+            <span class="px road__lvl">LVL 1 · 2022</span>
+            <div class="road__body">
+              <h3>Hello, world</h3>
+              <p>First line of code. It printed twice and I was hooked anyway.</p>
+            </div>
+          </li>
+          <li class="road__step" data-reveal>
+            <span class="px road__lvl">LVL 2 · 2023</span>
+            <div class="road__body">
+              <h3>CS studies — the tutorial zone</h3>
+              <p>Data structures, algorithms, group projects and strategic all-nighters.</p>
+            </div>
+          </li>
+          <li class="road__step" data-reveal>
+            <span class="px road__lvl">LVL 3 · 2024</span>
+            <div class="road__body">
+              <h3>First internship — co-op unlocked</h3>
+              <p>Shipped real features to real users. Learned code review is a gift, not a boss fight.</p>
+            </div>
+          </li>
+          <li class="road__step" data-reveal>
+            <span class="px road__lvl">LVL 4 · 2025</span>
+            <div class="road__body">
+              <h3>Graduation + freelance quests</h3>
+              <p>Degree obtained. Built client projects end-to-end and discovered deployment Fridays.</p>
+            </div>
+          </li>
+          <li class="road__step road__step--now" data-reveal>
+            <span class="px road__lvl">LVL 5 · 2026</span>
+            <div class="road__body">
+              <h3>Junior Software Engineer <span class="px road__here blink">◀ you are here</span></h3>
+              <p>Portfolio polished, fundamentals solid, energy maxed. Looking for the next party to join.</p>
+            </div>
+          </li>
+        </ol>
+
+        <div class="badges" data-reveal>
+          <p class="px badges__head">Achievements unlocked</p>
+          <ul>
+            <li class="panel"><span class="panel__in"><i aria-hidden="true">⚑</i><b>First PR merged</b><span>and only 14 review comments</span></span></li>
+            <li class="panel"><span class="panel__in"><i aria-hidden="true">✦</i><b>Deployed to production</b><span>nothing caught fire</span></span></li>
+            <li class="panel"><span class="panel__in"><i aria-hidden="true">☾</i><b>2 a.m. bug slayer</b><span>it was a missing await</span></span></li>
+            <li class="panel"><span class="panel__in"><i aria-hidden="true">♦</i><b>Hackathon finisher</b><span>48h, 3 pizzas, 1 demo</span></span></li>
+            <li class="panel"><span class="panel__in"><i aria-hidden="true">★</i><b>CS degree obtained</b><span>tutorial complete</span></span></li>
+            <li class="panel panel--locked"><span class="panel__in"><i aria-hidden="true">?</i><b>???</b><span>hire me to unlock</span></span></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ============ SIDE QUESTS / GAMING ============ -->
+      <section class="zone" id="side" data-area-name="TAVERN">
+        <header class="zone__head" data-reveal>
+          <span class="px zone__tag">Zone 05</span>
+          <h2 class="zone__title">The tavern</h2>
+          <span class="px zone__note">what gaming taught me about engineering</span>
+        </header>
+
+        <div class="tavern">
+          <article class="lesson panel" data-reveal>
+            <div class="panel__in">
+              <span class="px lesson__from">From co-op &amp; MMOs</span>
+              <h3>Communication wins fights</h3>
+              <p>A coordinated average team beats brilliant solo players. Same in raids, same in sprints.</p>
+            </div>
+          </article>
+          <article class="lesson panel" data-reveal>
+            <div class="panel__in">
+              <span class="px lesson__from">From soulslikes</span>
+              <h3>Dying is data</h3>
+              <p>Forty-seven attempts at one boss builds the exact temperament you need for debugging.</p>
+            </div>
+          </article>
+          <article class="lesson panel" data-reveal>
+            <div class="panel__in">
+              <span class="px lesson__from">From speedruns</span>
+              <h3>Optimize the route</h3>
+              <p>Speedrunners automate the grind and measure everything. So do good engineers.</p>
+            </div>
+          </article>
+        </div>
+        <p class="px tavern__profile" data-reveal>player profile: RPG enjoyer · strategy nerd · support main · indie game respecter</p>
+      </section>
+
+      <!-- ============ JOIN MY PARTY ============ -->
+      <section class="zone recruit" id="contact" data-area-name="RECRUITMENT">
+        <header class="zone__head" data-reveal>
+          <span class="px zone__tag">Final zone</span>
+          <h2 class="zone__title">Join my party</h2>
+          <span class="px zone__note">junior dev LFG</span>
+        </header>
+
+        <div class="recruit__grid">
+          <div class="recruit__pitch" data-reveal>
+            <p class="recruit__line">Looking for a guild that ships.</p>
+            <p class="recruit__sub">
+              I bring energy, curiosity and clean commits — and I'm not above fetching
+              the metaphorical coffee while I learn your codebase. Give me interesting
+              problems and honest code reviews, and I'll out-grind anyone.
             </p>
-            <p class="letter__sig">— M. B.</p>
+            <div class="recruit__cta">
+              <a class="btn8" href="mailto:mohamedbensaddik1234@gmail.com"><span class="px">Send party invite</span><i aria-hidden="true">▶</i></a>
+              <a class="btn8 btn8--ghost" href="https://github.com/MedBens02" target="_blank" rel="noreferrer"><span class="px">Inspect GitHub</span><i aria-hidden="true">↗</i></a>
+            </div>
           </div>
 
-          <div class="post__action" data-reveal>
-            <a class="stampbtn" href="mailto:mohamedbensaddik1234@gmail.com">
-              <span class="sc">Post a letter</span>
-              <span class="stampbtn__arrow" aria-hidden="true">↗</span>
-            </a>
-            <dl class="address">
-              <div><dt class="sc">Email</dt><dd><a href="mailto:mohamedbensaddik1234@gmail.com">mohamedbensaddik1234@gmail.com</a></dd></div>
-              <div><dt class="sc">Elsewhere</dt><dd><a href="https://github.com/MedBens02" target="_blank" rel="noreferrer">GitHub ↗</a> &nbsp; <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn ↗</a></dd></div>
-              <div><dt class="sc">Local time</dt><dd><span data-clock>00:00</span> GMT+1 — Casablanca</dd></div>
-            </dl>
+          <div class="recruit__status panel" data-reveal>
+            <div class="panel__in">
+              <p class="px recruit__status-head">Player status</p>
+              <ul class="status">
+                <li><span class="px">Open to</span><b>Junior roles · internships · apprenticeships</b></li>
+                <li><span class="px">Response time</span><b>&lt; 24 hours</b></li>
+                <li><span class="px">Location</span><b>Morocco · remote-ready · <span data-clock>00:00</span> GMT+1</b></li>
+                <li><span class="px">Email</span><b><a href="mailto:mohamedbensaddik1234@gmail.com">mohamedbensaddik1234@gmail.com</a></b></li>
+                <li><span class="px">Socials</span><b><a href="https://github.com/MedBens02" target="_blank" rel="noreferrer">GitHub ↗</a> · <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn ↗</a></b></li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
     </main>
 
-    <!-- ============ COLOPHON ============ -->
-    <footer class="colophon" data-chapter="Colophon" data-folio="08">
-      <div class="colophon__rule" aria-hidden="true"></div>
-      <svg class="colophon__barcode" viewBox="0 0 220 48" aria-hidden="true">
-        <g fill="currentColor">
-          <rect x="0" width="3" height="40"/><rect x="6" width="1.5" height="40"/><rect x="11" width="4" height="40"/>
-          <rect x="18" width="1.5" height="40"/><rect x="23" width="2" height="40"/><rect x="28" width="5" height="40"/>
-          <rect x="36" width="1.5" height="40"/><rect x="41" width="3" height="40"/><rect x="47" width="1.5" height="40"/>
-          <rect x="52" width="4" height="40"/><rect x="59" width="2" height="40"/><rect x="64" width="1.5" height="40"/>
-          <rect x="69" width="5" height="40"/><rect x="77" width="2" height="40"/><rect x="82" width="3" height="40"/>
-          <rect x="88" width="1.5" height="40"/><rect x="93" width="4" height="40"/><rect x="100" width="1.5" height="40"/>
-          <rect x="105" width="2" height="40"/><rect x="110" width="5" height="40"/><rect x="118" width="1.5" height="40"/>
-          <rect x="123" width="3" height="40"/><rect x="129" width="2" height="40"/><rect x="134" width="4" height="40"/>
-          <rect x="141" width="1.5" height="40"/><rect x="146" width="2" height="40"/><rect x="151" width="5" height="40"/>
-          <rect x="159" width="1.5" height="40"/><rect x="164" width="3" height="40"/><rect x="170" width="1.5" height="40"/>
-          <rect x="175" width="4" height="40"/><rect x="182" width="2" height="40"/><rect x="187" width="1.5" height="40"/>
-          <rect x="192" width="3" height="40"/><rect x="198" width="5" height="40"/><rect x="206" width="1.5" height="40"/>
-          <rect x="211" width="2" height="40"/><rect x="216" width="4" height="40"/>
-        </g>
-        <text x="110" y="48" text-anchor="middle" font-size="6.5" letter-spacing="2" fill="currentColor" font-family="monospace">ISSN 2026-MB01 · THE INDEX</text>
-      </svg>
-      <p class="colophon__text">
-        <em>The Index</em>, Issue Nº 01 — designed &amp; built from scratch by its author.<br />
-        Set in Fraunces, Archivo &amp; Space Mono. Printed on pixels.
-      </p>
-      <div class="colophon__row sc">
-        <span>© 2026 Mohamed Bensaddik</span>
-        <span class="colophon__mid">No templates were harmed</span>
-        <button class="colophon__top" type="button" data-scrollto="#top">Back to the cover ↑</button>
-      </div>
+    <footer class="footer" data-area-name="GAME SAVED">
+      <span class="px footer__save"><i class="blink" aria-hidden="true">▮</i> game saved — © 2026 Mohamed Bensaddik</span>
+      <span class="px footer__credit">built with Vite, GSAP &amp; many respawns · try ↑↑↓↓←→←→BA</span>
+      <button class="px footer__top" type="button" data-scrollto="#top">▲ back to title screen</button>
     </footer>
 
-    <!-- Running folio -->
-    <div class="folio sc" aria-hidden="true">p.<span data-folio-no>01</span> — <span data-folio-label>Cover</span></div>
+    <!-- Walker: the journey strip -->
+    <div class="trail" aria-hidden="true">
+      <div class="trail__ground"></div>
+      <svg class="trail__flag" viewBox="0 0 14 22" shape-rendering="crispEdges">
+        <rect x="2" y="0" width="2" height="22" fill="#cdd3ee"/>
+        <rect x="4" y="1" width="8" height="3" fill="#ffb454"/>
+        <rect x="4" y="4" width="5" height="2" fill="#ffb454"/>
+      </svg>
+      <div class="walker" data-walker>
+        <svg viewBox="0 0 14 18" shape-rendering="crispEdges">
+          <!-- frame A -->
+          <g data-frame="a">
+            <rect x="4" y="0" width="6" height="2" fill="#3a3f5c"/>
+            <rect x="3" y="2" width="8" height="3" fill="#f2c9a0"/>
+            <rect x="4" y="3" width="2" height="1" fill="#2b2f47"/>
+            <rect x="8" y="3" width="2" height="1" fill="#2b2f47"/>
+            <rect x="3" y="5" width="8" height="5" fill="#ffb454"/>
+            <rect x="2" y="6" width="1" height="3" fill="#f2c9a0"/>
+            <rect x="11" y="6" width="1" height="3" fill="#f2c9a0"/>
+            <rect x="3" y="10" width="3" height="5" fill="#4a5178"/>
+            <rect x="8" y="10" width="3" height="5" fill="#4a5178"/>
+            <rect x="2" y="15" width="4" height="2" fill="#2b2f47"/>
+            <rect x="8" y="15" width="4" height="2" fill="#2b2f47"/>
+          </g>
+          <!-- frame B (legs crossed) -->
+          <g data-frame="b" style="display:none">
+            <rect x="4" y="0" width="6" height="2" fill="#3a3f5c"/>
+            <rect x="3" y="2" width="8" height="3" fill="#f2c9a0"/>
+            <rect x="4" y="3" width="2" height="1" fill="#2b2f47"/>
+            <rect x="8" y="3" width="2" height="1" fill="#2b2f47"/>
+            <rect x="3" y="5" width="8" height="5" fill="#ffb454"/>
+            <rect x="2" y="6" width="1" height="3" fill="#f2c9a0"/>
+            <rect x="11" y="6" width="1" height="3" fill="#f2c9a0"/>
+            <rect x="5" y="10" width="3" height="5" fill="#4a5178"/>
+            <rect x="6" y="10" width="2" height="5" fill="#3a3f5c"/>
+            <rect x="4" y="15" width="4" height="2" fill="#2b2f47"/>
+            <rect x="7" y="15" width="3" height="2" fill="#2b2f47"/>
+          </g>
+        </svg>
+      </div>
+    </div>
   </body>
 </html>
