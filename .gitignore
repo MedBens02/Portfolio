@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Local artifacts
+.DS_Store
+*.local
+.vite/
+
+# Visual QA output (screenshots)
+.shots/
+
+# Editor
+.idea/
+.vscode/

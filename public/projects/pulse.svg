@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" font-family="ui-monospace, Menlo, monospace">
+  <rect width="1200" height="900" fill="#13150f"/>
+  <g fill="none" stroke="#23261b" stroke-width="1.5">
+    <circle cx="600" cy="450" r="120"/>
+    <circle cx="600" cy="450" r="210"/>
+    <circle cx="600" cy="450" r="300"/>
+    <circle cx="600" cy="450" r="390"/>
+  </g>
+  <polyline points="80,450 280,450 330,450 360,330 400,570 440,260 480,640 520,360 560,500 600,450 820,450 1120,450"
+    fill="none" stroke="#c9f73a" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+  <polyline points="80,470 300,470 360,470 410,410 460,530 510,440 560,490 620,470 1120,470"
+    fill="none" stroke="#4a4e3a" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+  <g fill="#9a9d8f">
+    <circle cx="200" cy="780" r="4"/><circle cx="240" cy="780" r="4"/><circle cx="280" cy="780" r="4"/>
+    <circle cx="320" cy="780" r="4" fill="#c9f73a"/><circle cx="360" cy="780" r="4"/>
+  </g>
+  <text x="120" y="170" font-size="26" letter-spacing="8" fill="#9a9d8f">PULSE — REALTIME API</text>
+  <text x="120" y="208" font-size="20" letter-spacing="6" fill="#55584a">EVENT STREAM / 02</text>
+  <text x="940" y="790" font-size="20" letter-spacing="4" fill="#55584a">120K MSG/S</text>
+</svg>

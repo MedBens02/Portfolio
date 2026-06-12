@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" font-family="ui-monospace, Menlo, monospace">
+  <defs>
+    <pattern id="atlas-hatch" width="22" height="22" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="22" stroke="#2c2f21" stroke-width="2"/>
+    </pattern>
+    <clipPath id="atlas-half"><rect x="600" y="100" width="700" height="700"/></clipPath>
+  </defs>
+  <rect width="1200" height="900" fill="#13150f"/>
+  <circle cx="600" cy="450" r="310" fill="url(#atlas-hatch)" clip-path="url(#atlas-half)"/>
+  <circle cx="600" cy="450" r="310" fill="none" stroke="#e9ebe1" stroke-width="2"/>
+  <circle cx="600" cy="450" r="230" fill="none" stroke="#4a4e3a" stroke-width="1.5" stroke-dasharray="2 8"/>
+  <line x1="600" y1="100" x2="600" y2="800" stroke="#4a4e3a" stroke-width="1.5"/>
+  <line x1="250" y1="450" x2="950" y2="450" stroke="#4a4e3a" stroke-width="1.5"/>
+  <circle cx="600" cy="450" r="10" fill="#c9f73a"/>
+  <circle cx="819" cy="231" r="7" fill="#c9f73a"/>
+  <circle cx="381" cy="669" r="7" fill="#e9ebe1"/>
+  <g fill="none" stroke="#2c2f21" stroke-width="1.5">
+    <rect x="980" y="640" width="36" height="36"/>
+    <rect x="1024" y="640" width="36" height="36"/>
+    <rect x="980" y="684" width="36" height="36"/>
+    <rect x="1024" y="684" width="36" height="36" fill="#c9f73a" stroke="none"/>
+  </g>
+  <text x="120" y="170" font-size="26" letter-spacing="8" fill="#9a9d8f">ATLAS — COMMERCE</text>
+  <text x="120" y="208" font-size="20" letter-spacing="6" fill="#55584a">HEADLESS STORE / 03</text>
+</svg>
