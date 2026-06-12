@@ -1,211 +1,172 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
-import { ScrambleTextPlugin } from 'gsap/ScrambleTextPlugin';
-import { finePointer, lerp, clamp } from './utils.js';
+import { splitKinetic, initKinetic } from './kinetic.js';
 
-gsap.registerPlugin(ScrollTrigger, SplitText, ScrambleTextPlugin);
-
-const SCRAMBLE_CHARS = '01<>/#{}_-';
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 /*
- * Hide everything that animates in, and build the (paused) hero intro
- * timeline. The preloader curtain triggers .play(). Called before first
- * paint matters — the preloader covers the page while states are set.
+ * Hide everything the cover intro animates, and build the (paused)
+ * timeline the preloader wipe triggers. The preloader covers the page
+ * while initial states are set.
  */
 export function prepIntro() {
-  document.querySelectorAll('[data-scramble]').forEach((el) => {
-    el.dataset.text = el.textContent.trim();
-    el.textContent = '';
-  });
+  const kineticEl = document.querySelector('[data-kinetic]');
+  const chars = splitKinetic(kineticEl);
 
-  const split = new SplitText('[data-title]', { type: 'chars' });
-  gsap.set(split.chars, { yPercent: 120 });
-  gsap.set('.header', { autoAlpha: 0, y: -16 });
-  gsap.set('.hero__canvas', { autoAlpha: 0 });
-  gsap.set(['.hero__scroll', '.hero__tag', '.hero__coords'], { autoAlpha: 0, y: 18 });
+  gsap.set(chars, { yPercent: 112 });
+  gsap.set('.masthead', { autoAlpha: 0, y: -12 });
+  gsap.set(['.cover__date', '.cover__kicker', '.cover__deck', '.cover__hint'], { autoAlpha: 0, y: 14 });
+  gsap.set('.cover__ital', { autoAlpha: 0, x: 30 });
+  gsap.set('.toc', { autoAlpha: 0, y: 22 });
+  gsap.set('.cover__stamp', { autoAlpha: 0, scale: 1.5, rotation: 14 });
+  gsap.set('.cover__contours', { autoAlpha: 0 });
 
-  const tl = gsap.timeline({ paused: true, defaults: { ease: 'expo.out' } });
+  const tl = gsap.timeline({ paused: true, defaults: { ease: 'power3.out' } });
+  tl.to('.cover__contours', { autoAlpha: 1, duration: 1.8, ease: 'power2.inOut' }, 0)
+    .to('.masthead', { autoAlpha: 1, y: 0, duration: 0.7 }, 0.1)
+    .to('.cover__date', { autoAlpha: 1, y: 0, duration: 0.7 }, 0.18)
+    .to('.cover__kicker', { autoAlpha: 1, y: 0, duration: 0.7 }, 0.3)
+    .to(chars, { yPercent: 0, duration: 1.05, stagger: 0.045, ease: 'expo.out' }, 0.35)
+    .to('.cover__ital', { autoAlpha: 1, x: 0, duration: 0.8 }, 0.95)
+    .to('.cover__deck', { autoAlpha: 1, y: 0, duration: 0.8 }, 1.05)
+    .to('.toc', { autoAlpha: 1, y: 0, duration: 0.8 }, 1.15)
+    .to('.cover__stamp', { autoAlpha: 1, scale: 1, rotation: 0, duration: 0.5, ease: 'back.out(2.2)' }, 1.25)
+    .set('.cover__stamp', { clearProps: 'opacity,visibility' }) // restore CSS opacity
+    .to('.cover__hint', { autoAlpha: 1, y: 0, duration: 0.6 }, 1.45);
 
-  tl.to('.hero__canvas', { autoAlpha: 1, duration: 2.4, ease: 'power2.inOut' }, 0)
-    .to(split.chars, { yPercent: 0, duration: 1.15, stagger: { each: 0.03 } }, 0.15)
-    .to('.header', { autoAlpha: 1, y: 0, duration: 0.8, ease: 'power3.out' }, 0.7);
-
-  document.querySelectorAll('.hero [data-scramble]').forEach((el, i) => {
-    tl.to(
-      el,
-      { duration: 1, ease: 'none', scrambleText: { text: el.dataset.text, chars: SCRAMBLE_CHARS, speed: 0.4 } },
-      0.55 + i * 0.12
-    );
-  });
-
-  tl.to(
-    ['.hero__scroll', '.hero__tag', '.hero__coords'],
-    { autoAlpha: 1, y: 0, duration: 0.9, stagger: 0.09, ease: 'power3.out' },
-    0.9
-  );
-
-  // Once revealed, let chars escape their clip rows and react to hover.
-  tl.add(() => {
-    document.querySelectorAll('.hero__row').forEach((r) => (r.style.overflow = 'visible'));
-    initHeroCharHover(split.chars);
-  });
-
+  tl.add(() => initKinetic(kineticEl, chars));
   return tl;
 }
 
-function initHeroCharHover(chars) {
-  if (!finePointer) return;
-  chars.forEach((char) => {
-    char.addEventListener('mouseenter', () => {
-      gsap
-        .timeline()
-        .to(char, { yPercent: -16, color: '#c9f73a', duration: 0.18, ease: 'power2.out', overwrite: true })
-        .to(char, { yPercent: 0, duration: 0.85, ease: 'elastic.out(1.2, 0.45)' })
-        .to(char, { color: 'inherit', clearProps: 'color', duration: 0.3 }, 0.3);
-    });
-  });
-}
-
-export function initScrollAnimations({ glApi }) {
+export function initScrollAnimations() {
   // Generic fade-up reveals
   gsap.utils.toArray('[data-reveal]').forEach((el) => {
     gsap.from(el, {
       autoAlpha: 0,
-      y: 30,
+      y: 26,
       duration: 0.9,
       ease: 'power3.out',
       scrollTrigger: { trigger: el, start: 'top 88%', once: true },
     });
   });
 
-  // Mono labels decode themselves on entry (hero ones run in the intro)
-  gsap.utils.toArray('[data-scramble]').forEach((el) => {
-    if (el.closest('.hero')) return;
-    gsap.to(el, {
-      duration: 0.9,
-      ease: 'none',
-      scrambleText: { text: el.dataset.text, chars: SCRAMBLE_CHARS, speed: 0.4 },
-      scrollTrigger: { trigger: el, start: 'top 90%', once: true },
-    });
-  });
-
-  // Section heads: masked line reveal, then restore the clean DOM
-  document.querySelectorAll('.s-head').forEach((head) => {
-    const title = head.querySelector('.s-head__title');
-    const note = head.querySelector('.s-head__note');
-    const split = new SplitText(title, { type: 'lines', mask: 'lines' });
+  // Chapter heads: masked title lines + ghost numeral sliding in
+  document.querySelectorAll('.ch-head').forEach((head) => {
+    const split = new SplitText(head.querySelector('.ch-head__title'), { type: 'lines', mask: 'lines' });
     const tl = gsap.timeline({
-      scrollTrigger: { trigger: head, start: 'top 85%', once: true },
+      scrollTrigger: { trigger: head, start: 'top 86%', once: true },
       onComplete: () => split.revert(),
     });
-    tl.from(split.lines, { yPercent: 115, duration: 0.95, stagger: 0.09, ease: 'power4.out' });
-    if (note) tl.from(note, { autoAlpha: 0, duration: 0.7, ease: 'none' }, 0.25);
+    tl.from(split.lines, { yPercent: 115, duration: 0.9, stagger: 0.08, ease: 'power4.out' });
+    const no = head.querySelector('.ch-head__no');
+    if (no) tl.from(no, { autoAlpha: 0, x: 46, duration: 0.9, ease: 'power3.out' }, 0.1);
+    const note = head.querySelector('.ch-head__note');
+    if (note) tl.from(note, { autoAlpha: 0, duration: 0.6, ease: 'none' }, 0.35);
   });
 
-  // About statement: words ink themselves in as you scroll (scrubbed)
-  const stmt = document.querySelector('[data-scrub]');
-  if (stmt) {
-    const split = new SplitText(stmt, { type: 'words' });
-    gsap.set(split.words, { color: '#3c3f33' });
-    const tl = gsap.timeline({
-      scrollTrigger: { trigger: stmt, start: 'top 80%', end: 'bottom 45%', scrub: 0.4 },
-    });
-    split.words.forEach((word, i) => {
-      tl.to(word, { color: word.closest('em') ? '#c9f73a' : '#e9ebe1', duration: 1, ease: 'none' }, i * 0.35);
+  // Pull quote: masked line reveal
+  const quote = document.querySelector('[data-quote]');
+  if (quote) {
+    const split = new SplitText(quote, { type: 'lines', mask: 'lines' });
+    gsap.from(split.lines, {
+      yPercent: 110,
+      duration: 0.95,
+      stagger: 0.09,
+      ease: 'power4.out',
+      scrollTrigger: { trigger: quote, start: 'top 82%', once: true },
+      onComplete: () => split.revert(),
     });
   }
 
-  // Work rows surface one by one
-  gsap.utils.toArray('.work-row').forEach((row) => {
-    gsap.from(row, {
-      autoAlpha: 0,
-      y: 44,
-      duration: 0.85,
-      ease: 'power3.out',
-      scrollTrigger: { trigger: row, start: 'top 92%', once: true },
-    });
-  });
-
-  // Contact headline
-  gsap.from('[data-title-c]', {
-    yPercent: 130,
+  // Correspondence headline
+  gsap.from('.post__bigin', {
+    yPercent: 120,
     duration: 1.05,
-    stagger: 0.09,
     ease: 'expo.out',
-    scrollTrigger: { trigger: '.contact', start: 'top 72%', once: true },
+    scrollTrigger: { trigger: '.post__titlerow', start: 'top 78%', once: true },
   });
 
-  // Hero parallax + the WebGL field fading away as it scrolls off
-  gsap.to('.hero__name', {
-    yPercent: -18,
+  // Cover parallax: the word drifts up, the stamp rolls away
+  gsap.to('.cover__main', {
+    yPercent: -9,
     ease: 'none',
-    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
+    scrollTrigger: { trigger: '.cover', start: 'top top', end: 'bottom top', scrub: true },
   });
-  gsap.to(['.hero__top', '.hero__foot'], {
-    autoAlpha: 0,
+  gsap.to('.cover__stamp', {
+    rotation: 120,
     ease: 'none',
-    scrollTrigger: { trigger: '.hero', start: '5% top', end: '45% top', scrub: true },
-  });
-  ScrollTrigger.create({
-    trigger: '.hero',
-    start: 'top top',
-    end: 'bottom 15%',
-    onUpdate: (self) => glApi.setProgress(self.progress),
+    scrollTrigger: { trigger: '.cover', start: 'top top', end: 'bottom top', scrub: 0.5 },
   });
 
-  initWorkPreview();
+  initWorksShelf();
 }
 
 /*
- * Floating project preview that chases the cursor over the work list.
- * Desktop / fine pointers only — mobile shows inline artwork instead.
+ * Selected Works: on desktop (and only when motion is welcome) the
+ * section pins and the shelf of plates slides horizontally; the foot
+ * counter tracks the visible plate. Elsewhere the plates stack and the
+ * counter follows vertical scroll.
  */
-function initWorkPreview() {
-  if (!window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 64rem)').matches) return;
-  const preview = document.querySelector('.work-preview');
-  const list = document.querySelector('.work__list');
-  if (!preview || !list) return;
+function initWorksShelf() {
+  const track = document.querySelector('.works__track');
+  const plates = gsap.utils.toArray('.plate');
+  const counter = document.querySelector('[data-plate]');
+  if (!track || !plates.length) return;
+  const NUMERALS = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII'];
 
-  const imgs = preview.querySelectorAll('img');
-  gsap.set(preview, { scale: 0.92, autoAlpha: 0 });
+  const mm = gsap.matchMedia();
 
-  const xTo = gsap.quickTo(preview, 'x', { duration: 0.5, ease: 'power3.out' });
-  const yTo = gsap.quickTo(preview, 'y', { duration: 0.5, ease: 'power3.out' });
+  mm.add('(min-width: 64em) and (prefers-reduced-motion: no-preference)', () => {
+    const dist = () => Math.max(0, track.scrollWidth - window.innerWidth);
+    const tween = gsap.to(track, {
+      x: () => -dist(),
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.works',
+        start: 'top top',
+        end: () => '+=' + (dist() + window.innerHeight * 0.2),
+        pin: true,
+        scrub: 1,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        onUpdate: (self) => {
+          const idx = Math.min(plates.length - 1, Math.floor(self.progress * plates.length));
+          counter.textContent = NUMERALS[idx];
+        },
+      },
+    });
 
-  let rot = 0;
-  let rotTarget = 0;
-  let lastX = null;
-  let visible = false;
-
-  window.addEventListener(
-    'pointermove',
-    (e) => {
-      if (lastX !== null) rotTarget = clamp(rotTarget + (e.clientX - lastX) * 0.1, -9, 9);
-      lastX = e.clientX;
-      xTo(Math.min(e.clientX + 36, window.innerWidth - preview.offsetWidth - 24));
-      yTo(e.clientY - preview.offsetHeight / 2);
-    },
-    { passive: true }
-  );
-
-  gsap.ticker.add(() => {
-    rotTarget = lerp(rotTarget, 0, 0.1);
-    rot = lerp(rot, rotTarget, 0.15);
-    if (visible) gsap.set(preview, { rotation: rot });
-  });
-
-  gsap.utils.toArray('.work-row').forEach((row) => {
-    row.addEventListener('mouseenter', () => {
-      const idx = Number(row.dataset.preview) || 0;
-      imgs.forEach((img, i) => img.classList.toggle('is-active', i === idx));
-      visible = true;
-      gsap.to(preview, { autoAlpha: 1, scale: 1, duration: 0.5, ease: 'power3.out' });
+    // plate artwork pans gently as it crosses the viewport
+    plates.forEach((plate) => {
+      gsap.fromTo(
+        plate.querySelector('img'),
+        { xPercent: -6 },
+        {
+          xPercent: 0,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: plate,
+            containerAnimation: tween,
+            start: 'left right',
+            end: 'right left',
+            scrub: true,
+          },
+        }
+      );
     });
   });
 
-  list.addEventListener('mouseleave', () => {
-    visible = false;
-    gsap.to(preview, { autoAlpha: 0, scale: 0.92, duration: 0.45, ease: 'power2.out' });
+  mm.add('(max-width: 63.99em), (prefers-reduced-motion: reduce)', () => {
+    plates.forEach((plate, i) => {
+      ScrollTrigger.create({
+        trigger: plate,
+        start: 'top 60%',
+        end: 'bottom 60%',
+        onToggle: (self) => {
+          if (self.isActive) counter.textContent = NUMERALS[i];
+        },
+      });
+    });
   });
 }

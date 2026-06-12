@@ -1,22 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" font-family="ui-monospace, Menlo, monospace">
-  <rect width="1200" height="900" fill="#13150f"/>
-  <g fill="none" stroke-linecap="round">
-    <path d="M80,560 C 260,420 380,700 560,560 S 860,420 1120,560" stroke="#23261b" stroke-width="36"/>
-    <path d="M80,560 C 260,420 380,700 560,560 S 860,420 1120,560" stroke="#3a3e2c" stroke-width="14"/>
-    <path d="M80,560 C 260,420 380,700 560,560 S 860,420 1120,560" stroke="#c9f73a" stroke-width="3"/>
-    <path d="M80,660 C 300,560 420,760 620,660 S 900,560 1120,660" stroke="#2c2f21" stroke-width="2"/>
-    <path d="M80,460 C 300,360 420,560 620,460 S 900,360 1120,460" stroke="#2c2f21" stroke-width="2" stroke-dasharray="2 8"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="1200" height="900" fill="#f0ebdf"/>
+  <rect x="60" y="60" width="1080" height="780" fill="none" stroke="#2b2619" stroke-width="2"/>
+  <rect x="72" y="72" width="1056" height="756" fill="none" stroke="#2b2619" stroke-width="0.75"/>
+  <!-- interference: two ripple sources -->
+  <g fill="none" stroke="#2b2619" stroke-width="1">
+    <circle cx="430" cy="470" r="50"/><circle cx="430" cy="470" r="100"/><circle cx="430" cy="470" r="150"/>
+    <circle cx="430" cy="470" r="200" opacity="0.75"/><circle cx="430" cy="470" r="250" opacity="0.55"/>
+    <circle cx="430" cy="470" r="300" opacity="0.4"/><circle cx="430" cy="470" r="350" opacity="0.25"/>
   </g>
-  <g stroke="#4a4e3a" stroke-width="1.5">
-    <line x1="200" y1="160" x2="200" y2="220"/>
-    <line x1="280" y1="140" x2="280" y2="220"/>
-    <line x1="360" y1="180" x2="360" y2="220"/>
-    <line x1="440" y1="120" x2="440" y2="220"/>
-    <line x1="520" y1="170" x2="520" y2="220"/>
-    <line x1="600" y1="150" x2="600" y2="220"/>
+  <g fill="none" stroke="#2b2619" stroke-width="1">
+    <circle cx="780" cy="470" r="50"/><circle cx="780" cy="470" r="100"/><circle cx="780" cy="470" r="150"/>
+    <circle cx="780" cy="470" r="200" opacity="0.75"/><circle cx="780" cy="470" r="250" opacity="0.55"/>
+    <circle cx="780" cy="470" r="300" opacity="0.4"/><circle cx="780" cy="470" r="350" opacity="0.25"/>
   </g>
-  <circle cx="560" cy="560" r="9" fill="#c9f73a"/>
-  <circle cx="560" cy="560" r="22" fill="none" stroke="#c9f73a" stroke-width="1" stroke-dasharray="2 5"/>
-  <text x="760" y="180" font-size="26" letter-spacing="8" fill="#9a9d8f">FLUX — MOBILE</text>
-  <text x="760" y="218" font-size="20" letter-spacing="6" fill="#55584a">FITNESS APP / 05</text>
+  <circle cx="430" cy="470" r="7" fill="#c93a14"/>
+  <circle cx="780" cy="470" r="7" fill="#c93a14"/>
+  <line x1="430" y1="470" x2="780" y2="470" stroke="#c93a14" stroke-width="1.5" stroke-dasharray="2 7"/>
+  <text x="605" y="456" font-size="17" font-style="italic" fill="#c93a14" text-anchor="middle">sync interval</text>
+  <g stroke="#9b937e" stroke-width="0.8">
+    <line x1="120" y1="770" x2="1080" y2="770"/>
+    <line x1="120" y1="770" x2="120" y2="756"/><line x1="360" y1="770" x2="360" y2="756"/>
+    <line x1="600" y1="770" x2="600" y2="756"/><line x1="840" y1="770" x2="840" y2="756"/>
+    <line x1="1080" y1="770" x2="1080" y2="756"/>
+  </g>
+  <text x="120" y="150" font-size="30" font-style="italic" fill="#2b2619">Fig. 5 — Interference, constructive</text>
+  <text x="120" y="185" font-size="19" fill="#6e675a" font-family="monospace" letter-spacing="3">FLUX MOBILE · PLATE V · OFFLINE-FIRST</text>
 </svg>

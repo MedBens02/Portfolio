@@ -1,34 +1,38 @@
-# Mohamed Bensaddik — Portfolio
+# The Index — Issue Nº 01
 
-A dark, type-driven portfolio for a software engineer. Built from scratch — no
-templates — with a WebGL particle field, scroll-choreographed typography and an
-IDE-flavoured UI.
+> Mohamed Bensaddik's portfolio, designed as a printed field journal of
+> software engineering. Paper, ink and one vermilion accent.
 
-**Stack:** [Vite](https://vitejs.dev) · [GSAP](https://gsap.com) (ScrollTrigger,
-SplitText, ScrambleText) · [Three.js](https://threejs.org) ·
-[Lenis](https://lenis.darkroom.engineering) · vanilla JS & CSS.
+This branch is one of two complete designs in this repo:
+
+- **`claude/the-index-editorial`** (this branch) — warm editorial print design:
+  Fraunces variable serif, stamps, plates, ledgers and dotted leaders.
+- **`claude/dreamy-dirac-ewm5s9`** — dark "acid brutalist" design: WebGL
+  particle wave, chartreuse accent, IDE status bar.
+
+**Stack:** [Vite](https://vitejs.dev) · [GSAP](https://gsap.com)
+(ScrollTrigger, SplitText) · [Lenis](https://lenis.darkroom.engineering) ·
+[simplex-noise](https://github.com/jwagner/simplex-noise.js) · vanilla JS & CSS.
 
 ## Features
 
-- **WebGL hero** — ~30k points displaced by simplex noise in a custom shader,
-  with a gaussian ripple that trails the pointer and amplitude that reacts to
-  scroll velocity. Degrades gracefully (static frame for reduced-motion, hidden
-  if WebGL is unavailable).
-- **Preloader** — load-aware counter, curtain reveal, overlapping hero intro
-  with per-character title animation.
-- **Scroll choreography** — Lenis smooth scroll + ScrollTrigger: masked line
-  reveals, a word-by-word "ink in" statement, parallax, scramble-decoding mono
-  labels.
-- **Work list** — full-bleed acid-fill hover rows with a floating artwork
-  preview that chases the cursor (desktop); inline artwork cards on touch.
-- **Acid menu** — full-screen chartreuse overlay with staggered oversized links.
-- **IDE status bar** — live section indicator (`// work`), scroll percentage and
-  a Casablanca clock, like a code editor's footer.
-- **Custom cursor, magnetic CTA, infinite marquees** that speed up with scroll
-  velocity, film grain, easter-egg console banner.
-- **Accessible & responsive** — `prefers-reduced-motion` support throughout,
-  semantic HTML, keyboard-closable menu, fluid type via `clamp()`, mobile
-  layouts for every section, `100svh` hero, safe-area insets.
+- **Kinetic cover word** — "Engineer" set in Fraunces; each glyph's weight and
+  optical size swell toward the cursor (a slow breathing wave on touch),
+  fitted edge-to-edge at any viewport by a JS lockup sizer.
+- **Stamp preloader** — the issue literally gets stamped (red roundel slam +
+  paper recoil) before a sideways page wipe.
+- **Contour-line canvas** — drifting topographic ink lines behind the cover,
+  drawn on a 2D canvas with simplex noise; pauses off-screen.
+- **Horizontal plate shelf** — Selected Works pins and slides sideways through
+  five "scientific plates" (hand-coded SVG engravings) with parallax panning
+  and a roman-numeral counter; stacks vertically on mobile/reduced-motion.
+- **Editorial chrome** — double-rule masthead with a live chapter label, red
+  reading-progress rule, running folio chip (`p.03 — Selected Works`),
+  crop marks, paper grain, drop caps, dotted leader lines, a colophon with
+  barcode, and a postage-stamp mailto button.
+- **Accessible & responsive** — `prefers-reduced-motion` support throughout
+  (including a vertical works fallback), semantic HTML, keyboard-closable
+  drawer, fluid type, `100svh` cover, safe-area insets.
 
 ## Develop
 
@@ -41,11 +45,11 @@ npm run preview  # serve the production build
 
 ## Customise
 
-All content lives in `index.html` (projects, experience, capabilities, contact
-links). Colors and type are CSS custom properties at the top of
-`src/styles/main.css` — change `--accent` to re-skin the whole site. Project
-artworks are hand-coded SVGs in `public/projects/`; swap them for real
-screenshots when ready.
+All content lives in `index.html` (plates, ledger, capabilities, contact).
+Colors and type are CSS custom properties at the top of
+`src/styles/main.css` — swap `--red` and `--paper` to re-skin the issue.
+Plate artworks are hand-coded SVGs in `public/projects/`; replace them with
+real screenshots when ready.
 
 ## Deploy
 

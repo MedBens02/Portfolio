@@ -3,354 +3,415 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mohamed Bensaddik — Software Engineer</title>
-    <meta name="description" content="Mohamed Bensaddik is a software engineer crafting fast, resilient and beautiful digital products — from pixel to pipeline." />
+    <title>Mohamed Bensaddik — Software Engineer · The Index, Issue Nº 01</title>
+    <meta name="description" content="The Index — a field journal of software engineering. Mohamed Bensaddik designs and ships fast, resilient digital products with typographic care." />
     <meta name="author" content="Mohamed Bensaddik" />
-    <meta name="theme-color" content="#0e0f0c" />
-    <meta property="og:title" content="Mohamed Bensaddik — Software Engineer" />
-    <meta property="og:description" content="Software engineer crafting fast, resilient and beautiful digital products — from pixel to pipeline." />
+    <meta name="theme-color" content="#f4f0e6" />
+    <meta property="og:title" content="Mohamed Bensaddik — Software Engineer · The Index" />
+    <meta property="og:description" content="A field journal of software engineering — Issue Nº 01." />
     <meta property="og:type" content="website" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <script>document.documentElement.classList.replace('no-js', 'js');</script>
     <script type="module" src="/src/main.js"></script>
+    <!-- Issue Nº 01 — set in Fraunces, Archivo & Space Mono. -->
   </head>
 
   <body>
-    <!-- Preloader -->
+    <!-- Preloader: the issue gets stamped before it ships -->
     <div class="preloader" aria-hidden="true">
-      <div class="preloader__center">
-        <span class="preloader__count mono"><span data-counter>000</span><em>%</em></span>
-      </div>
-      <div class="preloader__foot mono">
-        <span>Mohamed Bensaddik</span>
-        <span>Portfolio © 2026</span>
+      <div class="preloader__inner">
+        <p class="preloader__over sc">A field journal of software</p>
+        <p class="preloader__title">The Index</p>
+        <p class="preloader__sub sc">Issue Nº 01 — M. Bensaddik</p>
+        <svg class="preloader__stamp roundel" viewBox="0 0 120 120" aria-hidden="true">
+          <defs>
+            <path id="ring" d="M 60,60 m -44,0 a 44,44 0 1,1 88,0 a 44,44 0 1,1 -88,0" />
+          </defs>
+          <circle cx="60" cy="60" r="56" fill="none" stroke="currentColor" stroke-width="2.5" />
+          <circle cx="60" cy="60" r="31" fill="none" stroke="currentColor" stroke-width="1.5" />
+          <text font-size="10.5" letter-spacing="2.6" fill="currentColor">
+            <textPath href="#ring">FIELD JOURNAL OF SOFTWARE • EST. 2020 • CASABLANCA •</textPath>
+          </text>
+          <text x="60" y="69" text-anchor="middle" font-size="24" font-weight="bold" fill="currentColor" font-family="Georgia, serif">MB</text>
+        </svg>
       </div>
     </div>
 
-    <!-- Film grain -->
-    <div class="noise" aria-hidden="true"></div>
+    <!-- Paper grain -->
+    <div class="grain" aria-hidden="true"></div>
 
-    <!-- Custom cursor (desktop, fine pointers only) -->
-    <div class="cursor" aria-hidden="true">
-      <div class="cursor__dot"></div>
-      <div class="cursor__ring"><span class="cursor__label mono">View</span></div>
-    </div>
+    <!-- Crop marks -->
+    <div class="crop crop--tl" aria-hidden="true"></div>
+    <div class="crop crop--tr" aria-hidden="true"></div>
+    <div class="crop crop--bl" aria-hidden="true"></div>
+    <div class="crop crop--br" aria-hidden="true"></div>
 
-    <header class="header">
-      <a class="header__logo" href="#top" data-scrollto="#top" aria-label="Back to top">
-        MB<sup>©</sup>
-      </a>
-      <div class="header__meta mono">
-        <span class="header__avail"><i class="dot" aria-hidden="true"></i>Open to work</span>
-      </div>
-      <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
-        <span class="burger__line"></span>
-        <span class="burger__line"></span>
-      </button>
+    <header class="masthead">
+      <a class="masthead__name" href="#top" data-scrollto="#top">M.&nbsp;Bensaddik</a>
+      <span class="masthead__chapter sc"><span data-chapter-label>Cover</span></span>
+      <nav class="masthead__nav sc" aria-label="Sections">
+        <a href="#profile" data-scrollto="#profile">Profile</a>
+        <a href="#works" data-scrollto="#works">Works</a>
+        <a href="#capabilities" data-scrollto="#capabilities">Capabilities</a>
+        <a href="#record" data-scrollto="#record">Record</a>
+        <a href="#contact" data-scrollto="#contact">Correspondence</a>
+      </nav>
+      <button class="masthead__toggle sc" type="button" aria-label="Open index" aria-expanded="false" aria-controls="drawer">Index ☰</button>
     </header>
+    <div class="progress" aria-hidden="true"><div class="progress__bar"></div></div>
 
-    <!-- Fullscreen menu -->
-    <nav class="menu" id="menu" aria-hidden="true" aria-label="Main navigation">
-      <div class="menu__inner">
-        <ul class="menu__list">
-          <li><a class="menu__link" href="#about" data-scrollto="#about"><span class="mono">01</span>About</a></li>
-          <li><a class="menu__link" href="#work" data-scrollto="#work"><span class="mono">02</span>Work</a></li>
-          <li><a class="menu__link" href="#stack" data-scrollto="#stack"><span class="mono">03</span>Stack</a></li>
-          <li><a class="menu__link" href="#contact" data-scrollto="#contact"><span class="mono">04</span>Contact</a></li>
-        </ul>
-        <div class="menu__foot mono">
-          <a href="mailto:mohamedbensaddik1234@gmail.com">mohamedbensaddik1234@gmail.com</a>
-          <div class="menu__socials">
-            <a href="https://github.com/MedBens02" target="_blank" rel="noreferrer">GitHub ↗</a>
-            <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
-          </div>
+    <!-- Index drawer (small screens) -->
+    <div class="scrim" aria-hidden="true"></div>
+    <nav class="drawer" id="drawer" aria-hidden="true" aria-label="Index">
+      <p class="drawer__head sc">In this issue</p>
+      <ol class="drawer__list">
+        <li><a href="#profile" data-scrollto="#profile"><span class="sc">01</span>Profile</a></li>
+        <li><a href="#works" data-scrollto="#works"><span class="sc">02</span>Selected Works</a></li>
+        <li><a href="#capabilities" data-scrollto="#capabilities"><span class="sc">03</span>Capabilities</a></li>
+        <li><a href="#record" data-scrollto="#record"><span class="sc">04</span>Record</a></li>
+        <li><a href="#contact" data-scrollto="#contact"><span class="sc">05</span>Correspondence</a></li>
+      </ol>
+      <div class="drawer__foot">
+        <a class="sc" href="mailto:mohamedbensaddik1234@gmail.com">mohamedbensaddik1234@gmail.com</a>
+        <div class="sc">
+          <a href="https://github.com/MedBens02" target="_blank" rel="noreferrer">GitHub ↗</a>
+          <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
         </div>
       </div>
     </nav>
 
     <main id="top">
-      <!-- ============ HERO ============ -->
-      <section class="hero" id="hero" data-section="intro">
-        <div class="hero__canvas" aria-hidden="true"><canvas data-gl></canvas></div>
+      <!-- ============ COVER ============ -->
+      <section class="cover" id="cover" data-chapter="Cover" data-folio="01">
+        <canvas class="cover__contours" aria-hidden="true"></canvas>
 
-        <div class="hero__top mono">
-          <span data-scramble>Software Engineer</span>
-          <span class="hero__top-mid" data-scramble>Folio © 2026</span>
-          <span data-scramble>Based in Morocco</span>
+        <div class="cover__date sc">
+          <span>Vol. I — Compiled June 2026</span>
+          <span class="cover__date-mid"><i class="reddot" aria-hidden="true"></i>Open to commissions</span>
+          <span>Casablanca, Morocco</span>
         </div>
 
-        <h1 class="hero__name">
-          <span class="hero__row"><span class="hero__line" data-fit data-title>Mohamed</span></span>
-          <span class="hero__row"><span class="hero__line hero__line--stroke" data-fit data-title>Bensaddik</span></span>
-        </h1>
-
-        <div class="hero__foot">
-          <span class="hero__scroll mono">Scroll<i>↓</i></span>
-          <p class="hero__tag">I design &amp; build fast, resilient web products — from pixel to pipeline.</p>
-          <span class="hero__coords mono">33.5731° N — 7.5898° W</span>
-        </div>
-      </section>
-
-      <!-- ============ MARQUEE ============ -->
-      <div class="marquee" data-marquee aria-hidden="true">
-        <div class="marquee__track">
-          <div class="marquee__group">
-            <span>Software Engineer</span><i>✦</i>
-            <span class="is-stroke">Full-Stack Developer</span><i>✦</i>
-            <span>Problem Solver</span><i>✦</i>
-            <span class="is-stroke">Open to Work</span><i>✦</i>
+        <div class="cover__main">
+          <p class="cover__kicker sc">Mohamed Bensaddik, <em>author &amp; engineer</em></p>
+          <div class="cover__wordrow">
+            <h1 class="cover__word" data-fit data-fit-cap="26" data-kinetic>Engineer</h1>
           </div>
+          <p class="cover__ital">of software<span class="red">.</span></p>
         </div>
-      </div>
 
-      <!-- ============ ABOUT ============ -->
-      <section class="about section" id="about" data-section="about">
-        <header class="s-head">
-          <span class="s-head__num mono" data-scramble>(01)</span>
-          <h2 class="s-head__title">About</h2>
-          <span class="s-head__note mono">The short version</span>
-        </header>
-
-        <p class="about__statement" data-scrub>
-          I'm a software engineer who turns <em>complex problems</em> into fast, elegant
-          products — sweating the <em>details</em> most people never see.
-        </p>
-
-        <div class="about__grid">
-          <p class="about__bio" data-reveal>
-            For the past five years I've designed, built and shipped software across the
-            stack — clean APIs, snappy interfaces, and infrastructure that doesn't fall
-            over at 3&nbsp;a.m. I care about performance budgets, readable code and
-            interfaces that feel alive. Currently open to ambitious projects and
-            full-time roles.
+        <div class="cover__lower">
+          <p class="cover__deck">
+            Designing &amp; shipping fast, resilient products — APIs, interfaces,
+            infrastructure — with the care of a typesetter and the patience of a
+            debugger.
           </p>
-          <ul class="about__facts">
-            <li data-reveal><strong>05+</strong><span class="mono">Years of experience</span></li>
-            <li data-reveal><strong>40+</strong><span class="mono">Projects shipped</span></li>
-            <li data-reveal><strong>∞</strong><span class="mono">Cups of espresso</span></li>
-          </ul>
+          <nav class="toc" aria-label="Table of contents">
+            <p class="toc__head sc">In this issue</p>
+            <ol>
+              <li><a href="#profile" data-scrollto="#profile"><span class="toc__no">01</span><span>Profile</span><span class="dots"></span><span class="toc__pg">p.02</span></a></li>
+              <li><a href="#works" data-scrollto="#works"><span class="toc__no">02</span><span>Selected Works</span><span class="dots"></span><span class="toc__pg">p.03</span></a></li>
+              <li><a href="#capabilities" data-scrollto="#capabilities"><span class="toc__no">03</span><span>Capabilities</span><span class="dots"></span><span class="toc__pg">p.05</span></a></li>
+              <li><a href="#record" data-scrollto="#record"><span class="toc__no">04</span><span>Record</span><span class="dots"></span><span class="toc__pg">p.06</span></a></li>
+              <li><a href="#contact" data-scrollto="#contact"><span class="toc__no">05</span><span>Correspondence</span><span class="dots"></span><span class="toc__pg">p.07</span></a></li>
+            </ol>
+          </nav>
+        </div>
+
+        <svg class="cover__stamp roundel" viewBox="0 0 120 120" aria-hidden="true">
+          <defs>
+            <path id="ring2" d="M 60,60 m -44,0 a 44,44 0 1,1 88,0 a 44,44 0 1,1 -88,0" />
+          </defs>
+          <circle cx="60" cy="60" r="56" fill="none" stroke="currentColor" stroke-width="2.5" />
+          <circle cx="60" cy="60" r="31" fill="none" stroke="currentColor" stroke-width="1.5" />
+          <text font-size="10.5" letter-spacing="2.6" fill="currentColor">
+            <textPath href="#ring2">FIELD JOURNAL OF SOFTWARE • EST. 2020 • CASABLANCA •</textPath>
+          </text>
+          <text x="60" y="69" text-anchor="middle" font-size="24" font-weight="bold" fill="currentColor" font-family="Georgia, serif">MB</text>
+        </svg>
+
+        <p class="cover__hint sc">Continue reading <i>↓</i></p>
+      </section>
+
+      <!-- ============ 01 PROFILE ============ -->
+      <section class="chapter profile" id="profile" data-chapter="Profile" data-folio="02">
+        <header class="ch-head">
+          <span class="ch-head__no" aria-hidden="true">01</span>
+          <h2 class="ch-head__title">Profile<span class="red">.</span></h2>
+          <span class="ch-head__note sc">The author, briefly</span>
+        </header>
+
+        <figure class="quote" data-reveal>
+          <blockquote>
+            <p data-quote>“I obsess over the details most people never see — that's where good software lives.”</p>
+          </blockquote>
+          <figcaption class="sc">— Margin note, found in every codebase</figcaption>
+        </figure>
+
+        <div class="profile__grid">
+          <div class="profile__bio">
+            <p class="dropcap" data-reveal>
+              For the past five years I've designed, built and shipped software across
+              the stack — clean APIs, snappy interfaces, and infrastructure that doesn't
+              fall over at 3&nbsp;a.m. I write code the way good books are typeset:
+              with rhythm, restraint, and respect for whoever reads it next.
+            </p>
+            <p data-reveal>
+              I care about performance budgets, readable diffs and interfaces that feel
+              alive. Currently taking on ambitious projects and full-time roles.
+            </p>
+          </div>
+
+          <dl class="specs" aria-label="Specifications">
+            <div class="specs__row" data-reveal><dt>Experience</dt><span class="dots"></span><dd>05+ years</dd></div>
+            <div class="specs__row" data-reveal><dt>Projects shipped</dt><span class="dots"></span><dd>40+</dd></div>
+            <div class="specs__row" data-reveal><dt>Stack coverage</dt><span class="dots"></span><dd>Full</dd></div>
+            <div class="specs__row" data-reveal><dt>Espresso consumed</dt><span class="dots"></span><dd>∞</dd></div>
+          </dl>
         </div>
       </section>
 
-      <!-- ============ WORK ============ -->
-      <section class="work section" id="work" data-section="work">
-        <header class="s-head">
-          <span class="s-head__num mono" data-scramble>(02)</span>
-          <h2 class="s-head__title">Selected Work</h2>
-          <span class="s-head__note mono">2023 — 2026</span>
+      <!-- ============ 02 SELECTED WORKS (horizontal plates) ============ -->
+      <section class="chapter works" id="works" data-chapter="Selected Works" data-folio="03">
+        <header class="ch-head">
+          <span class="ch-head__no" aria-hidden="true">02</span>
+          <h2 class="ch-head__title">Selected Works<span class="red">.</span></h2>
+          <span class="ch-head__note sc works__note">The shelf slides sideways — keep scrolling</span>
         </header>
 
-        <div class="work__list">
-          <a class="work-row" href="https://github.com/MedBens02" target="_blank" rel="noreferrer" data-preview="0">
-            <figure class="work-row__media"><img src="/projects/nexa.svg" alt="Nexa — analytics dashboard artwork" loading="lazy" /></figure>
-            <span class="work-row__index mono">01</span>
-            <h3 class="work-row__title">Nexa Analytics</h3>
-            <span class="work-row__tags mono">React · Node.js · PostgreSQL</span>
-            <span class="work-row__year mono">2026</span>
-            <span class="work-row__arrow" aria-hidden="true">↗</span>
-          </a>
+        <div class="works__viewport">
+          <div class="works__track">
+            <article class="plate">
+              <figure class="plate__fig">
+                <img src="/projects/nexa.svg" alt="Nexa Analytics — engraved telemetry chart, plate I" loading="lazy" />
+                <figcaption class="sc"><span>Fig. 1</span><span>Telemetry</span></figcaption>
+              </figure>
+              <div class="plate__body">
+                <span class="plate__no sc">Plate I — 2026</span>
+                <h3 class="plate__title">Nexa Analytics</h3>
+                <p class="plate__desc">A realtime analytics suite that turns event firehoses into legible, beautiful dashboards.</p>
+                <p class="plate__tags sc">React · Node.js · PostgreSQL</p>
+                <a class="plate__link sc" href="https://github.com/MedBens02" target="_blank" rel="noreferrer">View the work ↗</a>
+              </div>
+            </article>
 
-          <a class="work-row" href="https://github.com/MedBens02" target="_blank" rel="noreferrer" data-preview="1">
-            <figure class="work-row__media"><img src="/projects/pulse.svg" alt="Pulse — realtime event infrastructure artwork" loading="lazy" /></figure>
-            <span class="work-row__index mono">02</span>
-            <h3 class="work-row__title">Pulse API</h3>
-            <span class="work-row__tags mono">Go · Redis · WebSockets</span>
-            <span class="work-row__year mono">2025</span>
-            <span class="work-row__arrow" aria-hidden="true">↗</span>
-          </a>
+            <article class="plate">
+              <figure class="plate__fig">
+                <img src="/projects/pulse.svg" alt="Pulse API — seismograph trace, plate II" loading="lazy" />
+                <figcaption class="sc"><span>Fig. 2</span><span>Seismograph</span></figcaption>
+              </figure>
+              <div class="plate__body">
+                <span class="plate__no sc">Plate II — 2025</span>
+                <h3 class="plate__title">Pulse API</h3>
+                <p class="plate__desc">Event infrastructure moving 120k messages a second with sub-millisecond fan-out.</p>
+                <p class="plate__tags sc">Go · Redis · WebSockets</p>
+                <a class="plate__link sc" href="https://github.com/MedBens02" target="_blank" rel="noreferrer">View the work ↗</a>
+              </div>
+            </article>
 
-          <a class="work-row" href="https://github.com/MedBens02" target="_blank" rel="noreferrer" data-preview="2">
-            <figure class="work-row__media"><img src="/projects/atlas.svg" alt="Atlas — headless commerce artwork" loading="lazy" /></figure>
-            <span class="work-row__index mono">03</span>
-            <h3 class="work-row__title">Atlas Commerce</h3>
-            <span class="work-row__tags mono">Next.js · Stripe · GraphQL</span>
-            <span class="work-row__year mono">2025</span>
-            <span class="work-row__arrow" aria-hidden="true">↗</span>
-          </a>
+            <article class="plate">
+              <figure class="plate__fig">
+                <img src="/projects/atlas.svg" alt="Atlas Commerce — compass rose engraving, plate III" loading="lazy" />
+                <figcaption class="sc"><span>Fig. 3</span><span>Navigation</span></figcaption>
+              </figure>
+              <div class="plate__body">
+                <span class="plate__no sc">Plate III — 2025</span>
+                <h3 class="plate__title">Atlas Commerce</h3>
+                <p class="plate__desc">A headless storefront engine: one catalogue, every channel, no compromises.</p>
+                <p class="plate__tags sc">Next.js · Stripe · GraphQL</p>
+                <a class="plate__link sc" href="https://github.com/MedBens02" target="_blank" rel="noreferrer">View the work ↗</a>
+              </div>
+            </article>
 
-          <a class="work-row" href="https://github.com/MedBens02" target="_blank" rel="noreferrer" data-preview="3">
-            <figure class="work-row__media"><img src="/projects/orbit.svg" alt="Orbit — developer-first CMS artwork" loading="lazy" /></figure>
-            <span class="work-row__index mono">04</span>
-            <h3 class="work-row__title">Orbit CMS</h3>
-            <span class="work-row__tags mono">TypeScript · Prisma · tRPC</span>
-            <span class="work-row__year mono">2024</span>
-            <span class="work-row__arrow" aria-hidden="true">↗</span>
-          </a>
+            <article class="plate">
+              <figure class="plate__fig">
+                <img src="/projects/orbit.svg" alt="Orbit CMS — celestial orbits diagram, plate IV" loading="lazy" />
+                <figcaption class="sc"><span>Fig. 4</span><span>Celestial</span></figcaption>
+              </figure>
+              <div class="plate__body">
+                <span class="plate__no sc">Plate IV — 2024</span>
+                <h3 class="plate__title">Orbit CMS</h3>
+                <p class="plate__desc">A developer-first content engine where schemas are code and editors feel at home.</p>
+                <p class="plate__tags sc">TypeScript · Prisma · tRPC</p>
+                <a class="plate__link sc" href="https://github.com/MedBens02" target="_blank" rel="noreferrer">View the work ↗</a>
+              </div>
+            </article>
 
-          <a class="work-row" href="https://github.com/MedBens02" target="_blank" rel="noreferrer" data-preview="4">
-            <figure class="work-row__media"><img src="/projects/flux.svg" alt="Flux — cross-platform fitness app artwork" loading="lazy" /></figure>
-            <span class="work-row__index mono">05</span>
-            <h3 class="work-row__title">Flux Mobile</h3>
-            <span class="work-row__tags mono">React Native · Firebase</span>
-            <span class="work-row__year mono">2023</span>
-            <span class="work-row__arrow" aria-hidden="true">↗</span>
-          </a>
-        </div>
-
-        <div class="work__more" data-reveal>
-          <a class="link-line mono" href="https://github.com/MedBens02" target="_blank" rel="noreferrer">More experiments on GitHub ↗</a>
-        </div>
-      </section>
-
-      <!-- Floating hover preview (desktop only) -->
-      <div class="work-preview" aria-hidden="true">
-        <div class="work-preview__inner">
-          <img src="/projects/nexa.svg" alt="" />
-          <img src="/projects/pulse.svg" alt="" />
-          <img src="/projects/atlas.svg" alt="" />
-          <img src="/projects/orbit.svg" alt="" />
-          <img src="/projects/flux.svg" alt="" />
-        </div>
-      </div>
-
-      <!-- ============ STACK ============ -->
-      <section class="stack section" id="stack" data-section="stack">
-        <header class="s-head">
-          <span class="s-head__num mono" data-scramble>(03)</span>
-          <h2 class="s-head__title">Capabilities</h2>
-          <span class="s-head__note mono">Tools change, craft stays</span>
-        </header>
-
-        <div class="stack__grid">
-          <article class="stack-card" data-reveal>
-            <span class="stack-card__num mono">/01</span>
-            <h3>Frontend Engineering</h3>
-            <ul class="mono">
-              <li>React / Next.js</li>
-              <li>TypeScript</li>
-              <li>GSAP / Three.js</li>
-              <li>Tailwind CSS</li>
-              <li>Accessibility</li>
-            </ul>
-          </article>
-          <article class="stack-card" data-reveal>
-            <span class="stack-card__num mono">/02</span>
-            <h3>Backend &amp; Systems</h3>
-            <ul class="mono">
-              <li>Node.js / Express</li>
-              <li>Go</li>
-              <li>PostgreSQL / Redis</li>
-              <li>REST / GraphQL</li>
-              <li>Event-driven design</li>
-            </ul>
-          </article>
-          <article class="stack-card" data-reveal>
-            <span class="stack-card__num mono">/03</span>
-            <h3>Cloud &amp; DevOps</h3>
-            <ul class="mono">
-              <li>AWS / GCP</li>
-              <li>Docker / Kubernetes</li>
-              <li>CI/CD pipelines</li>
-              <li>Terraform</li>
-              <li>Observability</li>
-            </ul>
-          </article>
-          <article class="stack-card" data-reveal>
-            <span class="stack-card__num mono">/04</span>
-            <h3>Product &amp; Craft</h3>
-            <ul class="mono">
-              <li>System design</li>
-              <li>Performance budgets</li>
-              <li>Testing strategy</li>
-              <li>UI motion</li>
-              <li>Technical writing</li>
-            </ul>
-          </article>
-        </div>
-
-        <div class="stack__ticker" data-marquee-slow aria-hidden="true">
-          <div class="marquee__track">
-            <div class="marquee__group mono">
-              <span>TypeScript</span><span>React</span><span>Next.js</span><span>Node.js</span><span>Go</span>
-              <span>PostgreSQL</span><span>Redis</span><span>GraphQL</span><span>Docker</span><span>Kubernetes</span>
-              <span>AWS</span><span>Terraform</span><span>Three.js</span><span>GSAP</span><span>Vite</span>
-            </div>
+            <article class="plate">
+              <figure class="plate__fig">
+                <img src="/projects/flux.svg" alt="Flux Mobile — wave interference pattern, plate V" loading="lazy" />
+                <figcaption class="sc"><span>Fig. 5</span><span>Interference</span></figcaption>
+              </figure>
+              <div class="plate__body">
+                <span class="plate__no sc">Plate V — 2023</span>
+                <h3 class="plate__title">Flux Mobile</h3>
+                <p class="plate__desc">A cross-platform fitness companion with offline-first sync and buttery motion.</p>
+                <p class="plate__tags sc">React Native · Firebase</p>
+                <a class="plate__link sc" href="https://github.com/MedBens02" target="_blank" rel="noreferrer">View the work ↗</a>
+              </div>
+            </article>
           </div>
         </div>
+
+        <footer class="works__foot sc">
+          <span>Plate <span data-plate>I</span> of V</span>
+          <a href="https://github.com/MedBens02" target="_blank" rel="noreferrer">Complete archive on GitHub ↗</a>
+        </footer>
       </section>
 
-      <!-- ============ EXPERIENCE ============ -->
-      <section class="xp section" id="experience" data-section="experience">
-        <header class="s-head">
-          <span class="s-head__num mono" data-scramble>(04)</span>
-          <h2 class="s-head__title">Experience</h2>
-          <span class="s-head__note mono">Where I've been</span>
+      <!-- ============ 03 CAPABILITIES (type specimen) ============ -->
+      <section class="chapter caps" id="capabilities" data-chapter="Capabilities" data-folio="05">
+        <header class="ch-head">
+          <span class="ch-head__no" aria-hidden="true">03</span>
+          <h2 class="ch-head__title">Capabilities<span class="red">.</span></h2>
+          <span class="ch-head__note sc">A specimen sheet</span>
         </header>
 
-        <ol class="xp__list">
-          <li class="xp-row" data-reveal>
-            <div class="xp-row__role">
+        <ul class="caps__list">
+          <li class="spec" data-reveal>
+            <span class="spec__idx sc">№ 1</span>
+            <h3 class="spec__word">Frontend</h3>
+            <div class="spec__info">
+              <p class="spec__line">Interfaces that feel inevitable.</p>
+              <p class="spec__tags sc">React · Next.js · TypeScript · GSAP · Canvas</p>
+            </div>
+          </li>
+          <li class="spec" data-reveal>
+            <span class="spec__idx sc">№ 2</span>
+            <h3 class="spec__word">Backend</h3>
+            <div class="spec__info">
+              <p class="spec__line">APIs that read like prose.</p>
+              <p class="spec__tags sc">Node.js · Go · PostgreSQL · Redis · GraphQL</p>
+            </div>
+          </li>
+          <li class="spec" data-reveal>
+            <span class="spec__idx sc">№ 3</span>
+            <h3 class="spec__word">Cloud</h3>
+            <div class="spec__info">
+              <p class="spec__line">Infrastructure that sleeps at night.</p>
+              <p class="spec__tags sc">AWS · Docker · Kubernetes · Terraform · CI/CD</p>
+            </div>
+          </li>
+          <li class="spec" data-reveal>
+            <span class="spec__idx sc">№ 4</span>
+            <h3 class="spec__word">Craft</h3>
+            <div class="spec__info">
+              <p class="spec__line">The invisible ten percent.</p>
+              <p class="spec__tags sc">System design · Performance · Testing · Accessibility · Motion</p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ============ 04 RECORD (ledger) ============ -->
+      <section class="chapter record" id="record" data-chapter="Record" data-folio="06">
+        <header class="ch-head">
+          <span class="ch-head__no" aria-hidden="true">04</span>
+          <h2 class="ch-head__title">Record<span class="red">.</span></h2>
+          <span class="ch-head__note sc">Service history</span>
+        </header>
+
+        <ol class="ledger">
+          <li class="ledger__row" data-reveal>
+            <span class="ledger__period">2024 — Now</span>
+            <div class="ledger__main">
               <h3>Senior Software Engineer</h3>
-              <span class="mono">Freelance / Consulting</span>
+              <p>Designing and shipping full-stack products end-to-end for startups and studios.</p>
             </div>
-            <p class="xp-row__desc">Designing and shipping full-stack products end-to-end for startups and studios.</p>
-            <span class="xp-row__period mono">2024 — Now</span>
+            <span class="dots"></span>
+            <span class="ledger__org sc">Freelance / Consulting</span>
           </li>
-          <li class="xp-row" data-reveal>
-            <div class="xp-row__role">
+          <li class="ledger__row" data-reveal>
+            <span class="ledger__period">2022 — 2024</span>
+            <div class="ledger__main">
               <h3>Full-Stack Engineer</h3>
-              <span class="mono">Product Studio</span>
+              <p>Built realtime dashboards, payment flows and internal tooling for scale-ups.</p>
             </div>
-            <p class="xp-row__desc">Built realtime dashboards, payment flows and internal tooling for scale-ups.</p>
-            <span class="xp-row__period mono">2022 — 2024</span>
+            <span class="dots"></span>
+            <span class="ledger__org sc">Product Studio</span>
           </li>
-          <li class="xp-row" data-reveal>
-            <div class="xp-row__role">
+          <li class="ledger__row" data-reveal>
+            <span class="ledger__period">2020 — 2022</span>
+            <div class="ledger__main">
               <h3>Software Developer</h3>
-              <span class="mono">Digital Agency</span>
+              <p>Delivered performant marketing sites and e-commerce builds for global clients.</p>
             </div>
-            <p class="xp-row__desc">Delivered performant marketing sites and e-commerce builds for global clients.</p>
-            <span class="xp-row__period mono">2020 — 2022</span>
+            <span class="dots"></span>
+            <span class="ledger__org sc">Digital Agency</span>
           </li>
         </ol>
       </section>
 
-      <!-- ============ CONTACT ============ -->
-      <section class="contact section" id="contact" data-section="contact">
-        <span class="contact__label mono" data-scramble>(05) — Contact</span>
-        <h2 class="contact__title">
-          <span class="contact__row"><span class="contact__rowin" data-fit><span data-title-c>Let's build</span></span></span>
-          <span class="contact__row"><span class="contact__rowin" data-fit><span class="is-stroke" data-title-c>something</span> <em data-title-c>great</em></span></span>
-        </h2>
-        <div class="contact__cta">
-          <a class="btn-pill" href="mailto:mohamedbensaddik1234@gmail.com" data-magnetic>
-            <span class="btn-pill__label">Get in touch</span>
-            <span class="btn-pill__arrow" aria-hidden="true">↗</span>
-          </a>
+      <!-- ============ 05 CORRESPONDENCE ============ -->
+      <section class="chapter post" id="contact" data-chapter="Correspondence" data-folio="07">
+        <header class="ch-head">
+          <span class="ch-head__no" aria-hidden="true">05</span>
+          <h2 class="ch-head__title">Correspondence<span class="red">.</span></h2>
+          <span class="ch-head__note sc">Letters to the editor</span>
+        </header>
+
+        <div class="post__titlerow">
+          <p class="post__big"><span class="post__bigin" data-fit data-fit-cap="24"><em>Write</em> to me.</span></p>
         </div>
-        <div class="contact__details mono">
-          <div data-reveal>
-            <span class="contact__key">Email</span>
-            <a href="mailto:mohamedbensaddik1234@gmail.com">mohamedbensaddik1234@gmail.com</a>
+
+        <div class="post__grid">
+          <div class="letter" data-reveal>
+            <p class="letter__salute">Dear reader,</p>
+            <p>
+              If you're building something ambitious — and you care how it's made —
+              my desk is open. Send a few lines about your project; expect a
+              considered reply within a day or two.
+            </p>
+            <p class="letter__sig">— M. B.</p>
           </div>
-          <div data-reveal>
-            <span class="contact__key">Socials</span>
-            <a href="https://github.com/MedBens02" target="_blank" rel="noreferrer">GitHub ↗</a>
-            <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
-          </div>
-          <div data-reveal>
-            <span class="contact__key">Local time</span>
-            <span><span data-clock>00:00</span> GMT+1 — Casablanca</span>
+
+          <div class="post__action" data-reveal>
+            <a class="stampbtn" href="mailto:mohamedbensaddik1234@gmail.com">
+              <span class="sc">Post a letter</span>
+              <span class="stampbtn__arrow" aria-hidden="true">↗</span>
+            </a>
+            <dl class="address">
+              <div><dt class="sc">Email</dt><dd><a href="mailto:mohamedbensaddik1234@gmail.com">mohamedbensaddik1234@gmail.com</a></dd></div>
+              <div><dt class="sc">Elsewhere</dt><dd><a href="https://github.com/MedBens02" target="_blank" rel="noreferrer">GitHub ↗</a> &nbsp; <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn ↗</a></dd></div>
+              <div><dt class="sc">Local time</dt><dd><span data-clock>00:00</span> GMT+1 — Casablanca</dd></div>
+            </dl>
           </div>
         </div>
       </section>
     </main>
 
-    <footer class="footer">
-      <span class="mono">© 2026 Mohamed Bensaddik</span>
-      <span class="mono footer__credit">Designed &amp; built from scratch — Vite · GSAP · Three.js</span>
-      <button class="footer__top mono" type="button" data-scrollto="#top">Back to top ↑</button>
+    <!-- ============ COLOPHON ============ -->
+    <footer class="colophon" data-chapter="Colophon" data-folio="08">
+      <div class="colophon__rule" aria-hidden="true"></div>
+      <svg class="colophon__barcode" viewBox="0 0 220 48" aria-hidden="true">
+        <g fill="currentColor">
+          <rect x="0" width="3" height="40"/><rect x="6" width="1.5" height="40"/><rect x="11" width="4" height="40"/>
+          <rect x="18" width="1.5" height="40"/><rect x="23" width="2" height="40"/><rect x="28" width="5" height="40"/>
+          <rect x="36" width="1.5" height="40"/><rect x="41" width="3" height="40"/><rect x="47" width="1.5" height="40"/>
+          <rect x="52" width="4" height="40"/><rect x="59" width="2" height="40"/><rect x="64" width="1.5" height="40"/>
+          <rect x="69" width="5" height="40"/><rect x="77" width="2" height="40"/><rect x="82" width="3" height="40"/>
+          <rect x="88" width="1.5" height="40"/><rect x="93" width="4" height="40"/><rect x="100" width="1.5" height="40"/>
+          <rect x="105" width="2" height="40"/><rect x="110" width="5" height="40"/><rect x="118" width="1.5" height="40"/>
+          <rect x="123" width="3" height="40"/><rect x="129" width="2" height="40"/><rect x="134" width="4" height="40"/>
+          <rect x="141" width="1.5" height="40"/><rect x="146" width="2" height="40"/><rect x="151" width="5" height="40"/>
+          <rect x="159" width="1.5" height="40"/><rect x="164" width="3" height="40"/><rect x="170" width="1.5" height="40"/>
+          <rect x="175" width="4" height="40"/><rect x="182" width="2" height="40"/><rect x="187" width="1.5" height="40"/>
+          <rect x="192" width="3" height="40"/><rect x="198" width="5" height="40"/><rect x="206" width="1.5" height="40"/>
+          <rect x="211" width="2" height="40"/><rect x="216" width="4" height="40"/>
+        </g>
+        <text x="110" y="48" text-anchor="middle" font-size="6.5" letter-spacing="2" fill="currentColor" font-family="monospace">ISSN 2026-MB01 · THE INDEX</text>
+      </svg>
+      <p class="colophon__text">
+        <em>The Index</em>, Issue Nº 01 — designed &amp; built from scratch by its author.<br />
+        Set in Fraunces, Archivo &amp; Space Mono. Printed on pixels.
+      </p>
+      <div class="colophon__row sc">
+        <span>© 2026 Mohamed Bensaddik</span>
+        <span class="colophon__mid">No templates were harmed</span>
+        <button class="colophon__top" type="button" data-scrollto="#top">Back to the cover ↑</button>
+      </div>
     </footer>
 
-    <!-- IDE-style status bar -->
-    <div class="statusbar mono" aria-hidden="true">
-      <span class="statusbar__left"><i class="dot" aria-hidden="true"></i>main — portfolio</span>
-      <span class="statusbar__section">// intro</span>
-      <span class="statusbar__right">
-        <span class="statusbar__progress"><span data-progress>000</span>%</span>
-        <span class="statusbar__time"><span data-clock>00:00</span> GMT+1</span>
-        <span class="statusbar__enc">UTF-8</span>
-      </span>
-    </div>
+    <!-- Running folio -->
+    <div class="folio sc" aria-hidden="true">p.<span data-folio-no>01</span> — <span data-folio-label>Cover</span></div>
   </body>
 </html>

@@ -15,7 +15,12 @@ export function initFitText() {
       el.style.fontSize = '100px';
       const w = el.getBoundingClientRect().width;
       const avail = el.parentElement.clientWidth;
-      if (w > 0 && avail > 0) el.style.fontSize = `${(100 * avail * 0.995) / w}px`;
+      if (w <= 0 || avail <= 0) return;
+      let size = (100 * avail * 0.995) / w;
+      // optional cap in vh units so very wide viewports stay balanced
+      const cap = parseFloat(el.dataset.fitCap);
+      if (cap) size = Math.min(size, (window.innerHeight * cap) / 100);
+      el.style.fontSize = `${size}px`;
     });
   };
 

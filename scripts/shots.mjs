@@ -28,40 +28,41 @@ async function capture(name, { width, height, mobile = false }) {
   page.on('console', (m) => m.type() === 'error' && errors.push(`console: ${m.text()}`));
   page.on('pageerror', (e) => errors.push(`pageerror: ${e.message}`));
 
-  await page.goto(BASE, { waitUntil: 'networkidle' });
-  await page.waitForTimeout(5000); // preloader + hero intro
-  await page.screenshot({ path: `.shots/${name}-hero.png` });
-
-  for (const sel of ['#about', '#work', '#stack', '#experience', '#contact']) {
-    await page.evaluate((s) => {
-      const el = document.querySelector(s);
-      const y = el.getBoundingClientRect().top + window.scrollY - 30;
+  const jump = (expr) =>
+    page.evaluate((js) => {
+      const y = eval(js);
       const lenis = window.__app?.lenis;
       if (lenis) lenis.scrollTo(y, { immediate: true });
       else window.scrollTo(0, y);
-    }, sel);
+    }, expr);
+
+  await page.goto(BASE, { waitUntil: 'networkidle' });
+  await page.waitForTimeout(5500); // stamp preloader + cover intro
+  await page.screenshot({ path: `.shots/${name}-cover.png` });
+
+  for (const sel of ['#profile', '#works', '#capabilities', '#record', '#contact']) {
+    await jump(`document.querySelector('${sel}').getBoundingClientRect().top + window.scrollY - 60`);
     await page.waitForTimeout(1400);
     await page.screenshot({ path: `.shots/${name}-${sel.slice(1)}.png` });
+    if (sel === '#works' && !mobile) {
+      // mid-shelf: the pinned horizontal scroll in motion
+      await jump(`document.querySelector('#works').getBoundingClientRect().top + window.scrollY + window.innerHeight * 1.4`);
+      await page.waitForTimeout(1400);
+      await page.screenshot({ path: `.shots/${name}-works-mid.png` });
+    }
   }
 
-  await page.click('.burger');
-  await page.waitForTimeout(1300);
-  await page.screenshot({ path: `.shots/${name}-menu.png` });
-  await page.keyboard.press('Escape');
-  await page.waitForTimeout(1000);
+  await jump(`document.body.scrollHeight`);
+  await page.waitForTimeout(1200);
+  await page.screenshot({ path: `.shots/${name}-colophon.png` });
 
-  if (!mobile) {
-    await page.evaluate(() => {
-      const y = document.querySelector('#work').getBoundingClientRect().top + window.scrollY;
-      window.__app?.lenis?.scrollTo(y, { immediate: true });
-    });
-    await page.waitForTimeout(1300);
-    const row = await page.locator('.work-row').nth(1).boundingBox();
-    if (row) {
-      await page.mouse.move(row.x + row.width * 0.4, row.y + row.height / 2, { steps: 10 });
-      await page.waitForTimeout(1000);
-      await page.screenshot({ path: `.shots/${name}-work-hover.png` });
-    }
+  const toggle = page.locator('.masthead__toggle');
+  if (await toggle.isVisible()) {
+    await toggle.click();
+    await page.waitForTimeout(900);
+    await page.screenshot({ path: `.shots/${name}-drawer.png` });
+    await page.keyboard.press('Escape');
+    await page.waitForTimeout(700);
   }
 
   console.log(`[${name}] ${errors.length ? 'ERRORS:\n' + errors.join('\n') : 'no console/page errors'}`);

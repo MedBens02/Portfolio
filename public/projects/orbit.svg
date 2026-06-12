@@ -1,22 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" font-family="ui-monospace, Menlo, monospace">
-  <rect width="1200" height="900" fill="#13150f"/>
-  <g fill="none" stroke="#3a3e2c" stroke-width="1.5">
-    <ellipse cx="600" cy="450" rx="430" ry="160" transform="rotate(-18 600 450)"/>
-    <ellipse cx="600" cy="450" rx="330" ry="120" transform="rotate(14 600 450)"/>
-    <ellipse cx="600" cy="450" rx="210" ry="80" transform="rotate(-42 600 450)"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="1200" height="900" fill="#f0ebdf"/>
+  <rect x="60" y="60" width="1080" height="780" fill="none" stroke="#2b2619" stroke-width="2"/>
+  <rect x="72" y="72" width="1056" height="756" fill="none" stroke="#2b2619" stroke-width="0.75"/>
+  <g fill="none" stroke="#2b2619">
+    <ellipse cx="600" cy="460" rx="420" ry="150" stroke-width="1.2" transform="rotate(-14 600 460)"/>
+    <ellipse cx="600" cy="460" rx="320" ry="112" stroke-width="0.9" stroke-dasharray="3 7" transform="rotate(11 600 460)"/>
+    <ellipse cx="600" cy="460" rx="205" ry="74" stroke-width="1.2" transform="rotate(-38 600 460)"/>
   </g>
-  <circle cx="600" cy="450" r="34" fill="#c9f73a"/>
-  <circle cx="600" cy="450" r="58" fill="none" stroke="#c9f73a" stroke-width="1" stroke-dasharray="2 6"/>
-  <circle cx="212" cy="332" r="9" fill="#e9ebe1"/>
-  <circle cx="912" cy="546" r="7" fill="#9a9d8f"/>
-  <circle cx="704" cy="282" r="6" fill="#c9f73a"/>
-  <circle cx="438" cy="618" r="5" fill="#9a9d8f"/>
-  <g stroke="#23261b" stroke-width="1">
-    <line x1="120" y1="760" x2="1080" y2="760"/>
-    <line x1="120" y1="760" x2="120" y2="744"/><line x1="312" y1="760" x2="312" y2="744"/>
-    <line x1="504" y1="760" x2="504" y2="744"/><line x1="696" y1="760" x2="696" y2="744"/>
-    <line x1="888" y1="760" x2="888" y2="744"/><line x1="1080" y1="760" x2="1080" y2="744"/>
+  <!-- the sun -->
+  <circle cx="600" cy="460" r="38" fill="#c93a14"/>
+  <circle cx="600" cy="460" r="56" fill="none" stroke="#c93a14" stroke-width="1" stroke-dasharray="2 6"/>
+  <!-- bodies -->
+  <circle cx="206" cy="364" r="11" fill="none" stroke="#2b2619" stroke-width="2"/>
+  <circle cx="206" cy="364" r="4" fill="#2b2619"/>
+  <circle cx="906" cy="552" r="8" fill="#2b2619"/>
+  <circle cx="716" cy="296" r="6" fill="#c93a14"/>
+  <circle cx="452" cy="610" r="5" fill="#2b2619"/>
+  <!-- comet -->
+  <path d="M 920 220 C 860 260 800 310 760 360" fill="none" stroke="#c93a14" stroke-width="1.5" stroke-dasharray="1 7" stroke-linecap="round"/>
+  <circle cx="755" cy="366" r="5" fill="#c93a14"/>
+  <g font-size="17" font-style="italic" fill="#6e675a">
+    <text x="180" y="332">editor</text>
+    <text x="924" y="582">schema</text>
+    <text x="736" y="284">draft</text>
   </g>
-  <text x="120" y="170" font-size="26" letter-spacing="8" fill="#9a9d8f">ORBIT — CMS</text>
-  <text x="120" y="208" font-size="20" letter-spacing="6" fill="#55584a">CONTENT ENGINE / 04</text>
+  <text x="120" y="150" font-size="30" font-style="italic" fill="#2b2619">Fig. 4 — Celestial mechanics of content</text>
+  <text x="120" y="185" font-size="19" fill="#6e675a" font-family="monospace" letter-spacing="3">ORBIT CMS · PLATE IV</text>
+  <text x="1060" y="780" font-size="17" text-anchor="end" fill="#6e675a" font-style="italic">everything revolves around the source</text>
 </svg>

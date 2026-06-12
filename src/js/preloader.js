@@ -12,42 +12,41 @@ const assetsReady = () =>
   ]);
 
 /*
- * Counts to 100 (pacing tied to real load state), then lifts the curtain.
- * `onReveal` fires the moment the curtain starts moving so the hero
- * intro can overlap with it.
+ * The issue gets stamped before it ships: masthead fades up, the red
+ * roundel slams in with a paper recoil, then the page wipes in
+ * sideways. `onReveal` fires as the wipe starts.
  */
 export async function runPreloader({ reducedMotion, onReveal }) {
   const el = document.querySelector('.preloader');
-  const counter = el.querySelector('[data-counter]');
   const ready = assetsReady();
 
   if (reducedMotion) {
     await ready;
-    counter.textContent = '100';
     onReveal?.();
     await gsap.to(el, { autoAlpha: 0, duration: 0.3 });
     el.remove();
     return;
   }
 
-  const state = { v: 0 };
-  const render = () => {
-    counter.textContent = String(Math.round(state.v)).padStart(3, '0');
-  };
+  gsap.set(el, { clipPath: 'inset(0 0% 0 0)' });
 
-  await gsap.to(state, { v: 82, duration: 1.5, ease: 'power2.inOut', onUpdate: render });
+  const tl = gsap.timeline();
+  tl.from('.preloader__over', { autoAlpha: 0, y: -10, duration: 0.5, ease: 'power2.out' }, 0.05);
+  tl.from('.preloader__title', { autoAlpha: 0, y: 18, duration: 0.65, ease: 'power3.out' }, 0.15);
+  tl.from('.preloader__sub', { autoAlpha: 0, duration: 0.5, ease: 'none' }, 0.4);
+  tl.fromTo(
+    '.preloader__stamp',
+    { scale: 3.2, autoAlpha: 0, rotation: 12 },
+    { scale: 1, autoAlpha: 1, rotation: -14, duration: 0.34, ease: 'power4.in' },
+    0.8
+  );
+  tl.to('.preloader__inner', { y: 6, duration: 0.07, ease: 'power1.in' }, '>-0.04');
+  tl.to('.preloader__inner', { y: 0, duration: 0.45, ease: 'elastic.out(1.4, 0.5)' });
+  await tl;
   await ready;
-  await gsap.to(state, { v: 100, duration: 0.4, ease: 'power1.in', onUpdate: render });
+  await gsap.to({}, { duration: 0.2 }); // a beat, ink drying
 
-  const out = gsap.timeline();
-  out.to('.preloader__center, .preloader__foot', {
-    yPercent: -60,
-    autoAlpha: 0,
-    duration: 0.45,
-    ease: 'power2.in',
-  });
-  out.add(() => onReveal?.(), '-=0.1');
-  out.to(el, { clipPath: 'inset(0 0 100% 0)', duration: 0.85, ease: 'power4.inOut' });
-  await out;
+  onReveal?.();
+  await gsap.to(el, { clipPath: 'inset(0 100% 0 0)', duration: 0.8, ease: 'power4.inOut' });
   el.remove();
 }

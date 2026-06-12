@@ -1,20 +1,31 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" font-family="ui-monospace, Menlo, monospace">
-  <rect width="1200" height="900" fill="#13150f"/>
-  <g fill="none" stroke="#23261b" stroke-width="1.5">
-    <circle cx="600" cy="450" r="120"/>
-    <circle cx="600" cy="450" r="210"/>
-    <circle cx="600" cy="450" r="300"/>
-    <circle cx="600" cy="450" r="390"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="1200" height="900" fill="#f0ebdf"/>
+  <rect x="60" y="60" width="1080" height="780" fill="none" stroke="#2b2619" stroke-width="2"/>
+  <rect x="72" y="72" width="1056" height="756" fill="none" stroke="#2b2619" stroke-width="0.75"/>
+  <g stroke="#9b937e" stroke-width="0.8">
+    <line x1="120" y1="280" x2="1080" y2="280"/>
+    <line x1="120" y1="360" x2="1080" y2="360"/>
+    <line x1="120" y1="440" x2="1080" y2="440"/>
+    <line x1="120" y1="520" x2="1080" y2="520"/>
+    <line x1="120" y1="600" x2="1080" y2="600"/>
+    <line x1="120" y1="680" x2="1080" y2="680"/>
   </g>
-  <polyline points="80,450 280,450 330,450 360,330 400,570 440,260 480,640 520,360 560,500 600,450 820,450 1120,450"
-    fill="none" stroke="#c9f73a" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
-  <polyline points="80,470 300,470 360,470 410,410 460,530 510,440 560,490 620,470 1120,470"
-    fill="none" stroke="#4a4e3a" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-  <g fill="#9a9d8f">
-    <circle cx="200" cy="780" r="4"/><circle cx="240" cy="780" r="4"/><circle cx="280" cy="780" r="4"/>
-    <circle cx="320" cy="780" r="4" fill="#c9f73a"/><circle cx="360" cy="780" r="4"/>
+  <g stroke="#9b937e" stroke-width="0.8">
+    <line x1="240" y1="240" x2="240" y2="720" stroke-dasharray="2 6"/>
+    <line x1="420" y1="240" x2="420" y2="720" stroke-dasharray="2 6"/>
+    <line x1="600" y1="240" x2="600" y2="720" stroke-dasharray="2 6"/>
+    <line x1="780" y1="240" x2="780" y2="720" stroke-dasharray="2 6"/>
+    <line x1="960" y1="240" x2="960" y2="720" stroke-dasharray="2 6"/>
   </g>
-  <text x="120" y="170" font-size="26" letter-spacing="8" fill="#9a9d8f">PULSE — REALTIME API</text>
-  <text x="120" y="208" font-size="20" letter-spacing="6" fill="#55584a">EVENT STREAM / 02</text>
-  <text x="940" y="790" font-size="20" letter-spacing="4" fill="#55584a">120K MSG/S</text>
+  <polyline points="120,480 260,480 300,476 330,390 360,560 390,310 420,640 450,420 480,508 540,478 700,480 740,470 770,492 820,480 1080,480"
+    fill="none" stroke="#2b2619" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="390" cy="310" r="26" fill="none" stroke="#c93a14" stroke-width="2.5"/>
+  <line x1="390" y1="284" x2="390" y2="248" stroke="#c93a14" stroke-width="1.5"/>
+  <text x="404" y="252" font-size="18" font-style="italic" fill="#c93a14">peak observed</text>
+  <g fill="#2b2619">
+    <circle cx="180" cy="760" r="3.5"/><circle cx="200" cy="760" r="3.5"/><circle cx="220" cy="760" r="3.5"/>
+    <circle cx="240" cy="760" r="3.5" fill="#c93a14"/><circle cx="260" cy="760" r="3.5"/>
+  </g>
+  <text x="120" y="150" font-size="30" font-style="italic" fill="#2b2619">Fig. 2 — Seismograph of a busy Tuesday</text>
+  <text x="120" y="185" font-size="19" fill="#6e675a" font-family="monospace" letter-spacing="3">PULSE API · PLATE II · 120K MSG/S</text>
 </svg>
