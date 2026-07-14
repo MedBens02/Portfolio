@@ -43,9 +43,10 @@ vanilla JS & CSS.
 
 ```bash
 npm install
-npm run dev      # local dev server
-npm run build    # production build → dist/
-npm run preview  # serve the production build
+npm run fetch:art  # one-time: download the generated pixel-art imagery
+npm run dev        # local dev server
+npm run build      # production build → dist/
+npm run preview    # serve the production build
 ```
 
 ## Customise
@@ -53,9 +54,12 @@ npm run preview  # serve the production build
 All content lives in `index.html` (quests, skill nodes, XP road, stats,
 contact). Colors are CSS custom properties at the top of
 `src/styles/main.css` — `--amber`, `--mint` and the `--sky-*` pairs in
-`src/js/sky.js` re-skin the world. Quest art is hand-pixelled SVG in
-`public/projects/`; swap in real screenshots (keep `image-rendering:
-pixelated` or remove it).
+`src/js/sky.js` re-skin the world. Imagery (portrait, quest art, tavern,
+og card) is AI-generated pixel art fetched by `npm run fetch:art`
+(manifest in `scripts/fetch-art.mjs`); the hand-pixelled SVGs in
+`public/char/` and `public/projects/` remain as fallbacks — point the
+`<img>` tags back at them to revert. Keep `image-rendering: pixelated`
+or remove it per taste.
 
 ## Deploy
 
