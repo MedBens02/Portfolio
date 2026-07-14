@@ -10,6 +10,8 @@
     <meta property="og:title" content="Mohamed Bensaddik — Junior Software Engineer · Press Start" />
     <meta property="og:description" content="A junior developer's journey — quest log, skill tree and party invites open." />
     <meta property="og:type" content="website" />
+    <!-- set an absolute URL for og:image once the site has its final domain -->
+    <meta property="og:image" content="/og.png" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <script>document.documentElement.classList.replace('no-js', 'js');</script>
     <script type="module" src="/src/main.js"></script>
@@ -101,6 +103,16 @@
         </header>
 
         <div class="char__grid">
+          <div class="char__portrait panel" data-reveal>
+            <div class="panel__in char__portrait-in">
+              <figure class="char__pic">
+                <img src="/char/portrait.svg" alt="Pixel-art portrait of Mohamed — a young developer with headphones" />
+              </figure>
+              <p class="px char__pic-name">Mohamed <span>· LVL 5</span></p>
+              <p class="px char__pic-class">class: junior full-stack</p>
+            </div>
+          </div>
+
           <div class="dialogwrap" data-reveal>
             <div class="dialog panel">
             <div class="panel__in">
@@ -367,6 +379,13 @@
           <h2 class="zone__title">The tavern</h2>
           <span class="px zone__note">what gaming taught me about engineering</span>
         </header>
+
+        <figure class="tavern__banner panel" data-reveal>
+          <div class="panel__in tavern__banner-in">
+            <img src="/char/tavern.svg" alt="Pixel-art tavern interior at dusk — controllers and keyboards share the same table" loading="lazy" />
+            <figcaption class="px">the guild tavern — where controllers and keyboards share a table</figcaption>
+          </div>
+        </figure>
 
         <div class="tavern">
           <article class="lesson panel" data-reveal>

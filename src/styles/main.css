@@ -570,9 +570,34 @@ html.retro .scanlines {
    ------------------------------------------------------------ */
 .char__grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  grid-template-columns: clamp(180px, 17vw, 230px) minmax(0, 1.3fr) minmax(0, 1fr);
   gap: clamp(1.5rem, 3vw, 2.5rem);
   align-items: start;
+}
+
+.char__portrait-in {
+  padding: 0.9rem;
+  text-align: center;
+}
+.char__pic {
+  border: 2px solid var(--line-soft);
+  background: var(--darker);
+}
+.char__pic img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+.char__pic-name {
+  margin-top: 0.7rem;
+  color: var(--amber);
+}
+.char__pic-name span {
+  color: var(--muted);
+}
+.char__pic-class {
+  color: var(--muted);
+  font-size: 0.55rem;
 }
 
 .dialogwrap {
@@ -966,6 +991,25 @@ html.retro .scanlines {
 /* ------------------------------------------------------------
    Tavern
    ------------------------------------------------------------ */
+.tavern__banner {
+  margin-bottom: clamp(1.4rem, 3vw, 2.2rem);
+}
+.tavern__banner-in {
+  padding: 0.7rem;
+}
+.tavern__banner img {
+  width: 100%;
+  aspect-ratio: 21 / 8;
+  object-fit: cover;
+  border: 2px solid var(--line-soft);
+}
+.tavern__banner figcaption {
+  margin-top: 0.6rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.55rem;
+}
+
 .tavern {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1174,6 +1218,12 @@ html.retro .scanlines {
   .sidequests {
     grid-template-columns: 1fr;
   }
+  .char__grid {
+    grid-template-columns: clamp(160px, 24vw, 210px) minmax(0, 1fr);
+  }
+  .char__stats {
+    grid-column: 1 / -1;
+  }
   .tree {
     grid-template-columns: 1fr;
   }
@@ -1193,6 +1243,12 @@ html.retro .scanlines {
   .char__grid,
   .recruit__grid {
     grid-template-columns: 1fr;
+  }
+  .char__portrait {
+    max-width: 250px;
+  }
+  .tavern__banner img {
+    aspect-ratio: 16 / 9;
   }
 
   .zone__note {
